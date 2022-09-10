@@ -11,3 +11,5 @@ def detail(request, user_id):
     user = CustomUser.objects.get(pk=user_id)
     name = user.name
     return HttpResponse(name)
+
+#確認用コメント
