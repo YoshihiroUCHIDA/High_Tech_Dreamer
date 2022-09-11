@@ -8,7 +8,7 @@ from .forms import DiaryForm
 def index(request):
     diary = Diary.objects.all()
     params = {
-        'diary_list': diary,
+        'diaries_list': diary,
     }
     return render(request, 'diaries/index.html', params)
 
