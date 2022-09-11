@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8" />
+    <title>テスト結果一覧</title>
+</head>
+ 
+<body>
+    <h1>テスト結果一覧</h1>
+    <p>模試</p>
+    <table border="1">
+        <tr>
+            <th>科目</th>
+            <th>点数</th>
+            <th>形式</th>
+            <th>日付</th>
+        </tr>
+        {% for records in data %}
+        {% if records.type == "模試" %}
+        <tr>
+            <td>{{ records.subject }}</td>
+            <td>{{ records.score }}</td>
+            <td>{{ records.type }}</td>
+            <td>{{ records.day }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+    <p>定期</p>
+    <table border="1">
+        <tr>
+            <th>科目</th>
+            <th>点数</th>
+            <th>形式</th>
+            <th>日付</th>
+        </tr>
+        {% for records in data %}
+        {% if records.type == "定期" %}
+        <tr>
+            <td>{{ records.subject }}</td>
+            <td>{{ records.score }}</td>
+            <td>{{ records.type }}</td>
+            <td>{{ records.day }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+</body>
+ 
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8" />
+    <title>テスト結果詳細</title>
+</head>
+ 
+<body>
+    <h1>テスト結果詳細</h1>
+    <table border="1">
+        <tr>
+            <th>科目</th>
+            <th>点数</th>
+            <th>平均点</th>
+            <th>形式</th>
+            <th>日付</th>
+        </tr>
+        {% for records in data %}
+        <tr>
+            <td>{{ records.subject }}</td>
+            <td>{{ records.score }}</td>
+            <td>{{ records.averagescore }}</td>
+            <td>{{ records.type }}</td>
+            <td>{{ records.day }}</td>
+        </tr>
+        {% endfor %}
+</body>
+ 
+</html>
