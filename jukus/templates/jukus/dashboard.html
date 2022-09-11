@@ -2,13 +2,12 @@
 {% block title %}ダッシュボード{% endblock %}
 
 {% block content %}
-  <h1>{{juku.name}}</h1>
+  <h1 class="display-3">{{juku.name}}</h1>
   <hr>
-  <h2>お知らせ</h2>
-  <p>{{juku.news}}</p>
-  <a href="/users/">生徒一覧</a>
-  <a href="/users/">講師一覧</a>
-  <a href="/subjects/">科目一覧</a>
+  <h3>お知らせ</h3>
+  <div class="alert alert-primary" role="alert">
+    {{juku.news}}
+  </div>
   {% include "diaries/create_btn.html" %}
   <hr>
   {% include "diaries/list.html" %}
