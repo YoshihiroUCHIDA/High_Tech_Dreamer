@@ -7,6 +7,15 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <title>{% block title %}{% endblock %}</title>
+<style>
+  .original-gradient {
+    background-color: #3ff471;
+    background-image: linear-gradient(132deg, #3ff471 0%, #16A085 100%);
+
+
+
+  } 
+</style>
 
   </head>
   <body>
@@ -33,7 +42,7 @@
         </div>
       </div>
     </nav>
-    <div class="container">
+    <div class="m-0 py-2 original-gradient">
       {% block content %}{% endblock %}
     </div>
 

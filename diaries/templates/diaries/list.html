@@ -1,23 +1,26 @@
-{% if diaries_list %}
-  <div class="row">
-  {% for diary in diaries_list %}
-    <div class="col">
-      <div class="card">
-        <div class="card-header">
-          {{ diary.date|date:"n月j日 (D)" }} - {{ diary.student_id.name }}
-          <span class="badge bg-{{diary.subject_id.color}}"> {{ diary.subject_id }}</span>
-        </div>
-        <div class="card-body">
-          <p class="fs-6 text-secondary">内容</p>
-          <p class="fs-6">{{diary.content}}</p>
-          <p class="fs-6 text-secondary">宿題</p>
-          <p class="fs-6">{{diary.homework}}</p>
-          <a class ="btn btn-outline-primary" href="{% url 'diaries:detail' diary.id %}">詳細</a>
+<div class="container my-4 py-3 bg-light rounded-3">
+  <h3 class="fw-bold">日報</h3>
+  {% if diaries_list %}
+    <div class="row">
+    {% for diary in diaries_list %}
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            {{ diary.date|date:"n月j日 (D)" }} - {{ diary.student_id.name }}
+            <span class="badge bg-{{diary.subject_id.color}}"> {{ diary.subject_id }}</span>
+          </div>
+          <div class="card-body">
+            <p class="fs-6 text-secondary">内容</p>
+            <p class="fs-6">{{diary.content}}</p>
+            <p class="fs-6 text-secondary">宿題</p>
+            <p class="fs-6">{{diary.homework}}</p>
+            <a class ="btn btn-outline-primary" href="{% url 'diaries:detail' diary.id %}">詳細</a>
+          </div>
         </div>
       </div>
+    {% endfor %}
     </div>
-  {% endfor %}
-  </div>
-{% else %}
-  <p>No Diary</p>
-{% endif %}
+  {% else %}
+    <p>No Diary</p>
+  {% endif %}
+</div>
