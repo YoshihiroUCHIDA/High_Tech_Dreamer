@@ -4,17 +4,15 @@
     <div class="col">
       <div class="card">
         <div class="card-header">
-          {{ diary.date }}
+          {{ diary.date|date:"n月j日 (D)" }} - {{ diary.student_id.name }}
+          <span class="badge bg-{{diary.subject_id.color}}"> {{ diary.subject_id }}</span>
         </div>
         <div class="card-body">
-          <p><a href="{% url 'diaries:detail' diary.id %}">詳細を確認{{ diary.id }}</a></p>
-          <p>科目コース: {{ diary.subject_id }}</p>
-          {% comment '以下の2行をコメントアウト' %}
-          <p>講師ID: <a href="{% url 'users:detail' diary.teacher_id.id %}">{{ diary.teacher_id }}</a></p>
-          <p>生徒ID: <a href="{% url 'users:detail' diary.student_id.id %}">{{ diary.student_id }}</a></p>
-          {% endcomment %}
-          <a class="btn btn-secondary" href="{% url 'diaries:edit' diary.id %}">編集</a>
-          <a class="btn btn-danger" href="{% url 'diaries:delete' diary.id %}">削除</a>
+          <p class="fs-6 text-secondary">内容</p>
+          <p class="fs-6">{{ diary.content}}</p>
+          <p class="fs-6 text-secondary">宿題</p>
+          <p class="fs-6">{{ diary.homework}}</p>
+          <a class ="btn btn-primary" href="{% url 'diaries:detail' diary.id %}">詳細</a>
         </div>
       </div>
     </div>
