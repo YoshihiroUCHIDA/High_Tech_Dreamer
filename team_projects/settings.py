@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'subjects',
     'diaries',
     'jukus',
-    'accounts.apps.AccountsConfig',
+    #'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
