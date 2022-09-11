@@ -32,4 +32,4 @@ class MyLogoutView(LoginRequiredMixin, LogoutView):
     template_name = "users/logout.html"
 
 class IndexView(TemplateView):
-    template_name = "users/index.html"
+    template_name = "users/logined.html"
