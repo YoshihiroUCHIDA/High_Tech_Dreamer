@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    {% if users_list %}
+
+      <h1>{{users_list|length}}人のユーザー</h1>
+      <hr>
+      <div id="counter">
+        Counter: [[ counter ]]
+      </div>
+
+      <script>
+        const Counter = {
+          data() {
+            return { counter: 0 }
+          },
+          mounted() {
+            setInterval(() => {
+              this.counter++
+            }, 1000)
+          },
+          delimiters: ['[[', ']]'] 
+        }
+        Vue.createApp(Counter).mount('#counter')
+      </script>
+
+      {% for user in users_list %}
+        <h3><a href="/users/{{user.id}}/">{{user.name}}</a></h3>
+        <p>{{user.school}}</p>
+        <p>{{user.birth}}</p>
+      {% endfor %}
+
+    {% else %}
+      <p>No Users</p>
+    {% endif %}
+  </body>
+</html>
+

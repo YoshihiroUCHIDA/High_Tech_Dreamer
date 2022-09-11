@@ -18,6 +18,7 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self.db)
         return user
+
     def create_user(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
@@ -43,7 +44,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     school = models.CharField(_("学校名"), max_length=50)
     birth = models.DateTimeField(_("生年月日"),null=True)
     job = models.CharField(_("講師or生徒"), max_length=20, choices=(('A','講師'),('B','生徒')))
-    juku = models.ForeignKey(Juku, on_delete=models.CASCADE)
+    juku = models.ForeignKey(Juku, on_delete=models.CASCADE,null=True)
 
     is_staff = models.BooleanField(_("staff status"), default=False)
     is_active = models.BooleanField(_("active"), default=True)
