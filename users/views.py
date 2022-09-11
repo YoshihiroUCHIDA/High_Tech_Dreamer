@@ -15,7 +15,7 @@ def index(request):
     params = { 'users_list': users,}
     return render(request, 'users/index.html', params)
 
-def detail(request, ):
+def detail(request):
     #user = CustomUser.objects.get(pk=user_id)
     user = request.user
     diaries = Diary.objects.filter(student_id=user.id)
@@ -32,5 +32,5 @@ class MyLoginView(LoginView):
 class MyLogoutView(LoginRequiredMixin, LogoutView):
     template_name = "users/logout.html"
 
-class IndexView(TemplateView):
-    template_name = "users/detail.html"
+#class IndexView(TemplateView):
+#    template_name = "users/detail.html"

@@ -9,10 +9,10 @@
         </div>
         <div class="card-body">
           <p class="fs-6 text-secondary">内容</p>
-          <p class="fs-6">{{ diary.content}}</p>
+          <p class="fs-6">{{diary.content}}</p>
           <p class="fs-6 text-secondary">宿題</p>
-          <p class="fs-6">{{ diary.homework}}</p>
-          <a class ="btn btn-primary" href="{% url 'diaries:detail' diary.id %}">詳細</a>
+          <p class="fs-6">{{diary.homework}}</p>
+          <a class ="btn btn-outline-primary" href="{% url 'diaries:detail' diary.id %}">詳細</a>
         </div>
       </div>
     </div>

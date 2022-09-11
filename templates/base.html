@@ -12,7 +12,8 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Proglesson</a>
+        <a class="navbar-brand" href="/">Proglesson  </a>
+        <a class="navbar-brand" href="/">|   {{user.juku}}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -28,10 +29,7 @@
               <a class="nav-link" href="/users/">生徒</a>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+          <a class="btn btn-outline-secondary" href="{% url 'users:logout' %}">ログアウト</a>
         </div>
       </div>
     </nav>

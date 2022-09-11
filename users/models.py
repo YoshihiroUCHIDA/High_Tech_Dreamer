@@ -41,7 +41,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(_("氏名"), max_length=50)
     school = models.CharField(_("学校名"), max_length=50)
     birth = models.DateTimeField(_("生年月日"),null=True)
-    job = models.CharField(_("講師or生徒"), max_length=20, choices=(('A','講師'),('B','生徒')))
+    job = models.CharField(_("講師or生徒"), max_length=20, choices=(('teacher','講師'),('student','生徒')))
     juku = models.ForeignKey(Juku, on_delete=models.CASCADE,null=True)
 
     is_staff = models.BooleanField(_("staff status"), default=False)
@@ -52,6 +52,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "email"
     EMAIL_FIELD = "email"
     REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = _("user")
