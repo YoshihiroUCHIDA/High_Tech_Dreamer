@@ -132,6 +132,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = 'login' # ログインしていないときのリダイレクト先
-LOGIN_REDIRECT_URL = 'index' # ログイン後のリダイレクト先
-LOGOUT_REDIRECT_URL = 'index' # ログアウト後のリダイレクト先
+LOGIN_URL = 'users:login' # ログインしていないときのリダイレクト先
+LOGIN_REDIRECT_URL = 'users:index' # ログイン後のリダイレクト先
+LOGOUT_REDIRECT_URL = 'users:logout' # ログアウト後のリダイレクト先
