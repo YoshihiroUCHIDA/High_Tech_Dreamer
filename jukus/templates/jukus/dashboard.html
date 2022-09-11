@@ -2,15 +2,13 @@
 {% block title %}ダッシュボード{% endblock %}
 
 {% block content %}
-  <h3>お知らせ</h3>
-  <div class="alert alert-success" role="alert">
-    {{juku.news}}
+  <div class="container my-4 py-3 bg-light rounded-3">
+    <h3 class="fw-bold">お知らせ</h3>
+    <div class="alert alert-success" role="alert">
+      {{juku.news}}
+    </div>
   </div>
-  {% include "diaries/create_btn.html" %}
-  <hr>
-  <h3>日報</h1>
   {% include "diaries/list.html" %}
-  <hr>
-  <h3>生徒</h1>
   {% include "users/list.html" %}
+  {% include "diaries/create_btn.html" %}
 {% endblock %}
