@@ -1,3 +1,15 @@
-<h1>{{user.name}}</h1>
-<h3>学校: {{user.school}}</h1>
-<h3>生年月日: {{user.birth}}</h1>
+<!DOCTYPE html>
+{% load django_bootstrap5 %}
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <body>
+    <h1>{{user.name}}</h1>
+    <h3>学校: {{user.school}}</h1>
+    <h3>生年月日: {{user.birth}}</h1>
+  </body>
