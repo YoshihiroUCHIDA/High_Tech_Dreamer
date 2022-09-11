@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'subjects',
     'diaries',
     'jukus',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = 'login' # ログインしていないときのリダイレクト先
+LOGIN_REDIRECT_URL = 'index' # ログイン後のリダイレクト先
+LOGOUT_REDIRECT_URL = 'index' # ログアウト後のリダイレクト先

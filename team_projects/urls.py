@@ -23,4 +23,5 @@ urlpatterns = [
     path('subjects/', include('subjects.urls')),
     path('records/', include('records.urls')),
     path('', include('jukus.urls')),
+    path('accounts/',include('accounts.urls')), # 追記
 ]
