@@ -1,28 +1,18 @@
-{% load django_bootstrap5 %}
-<!DOCTYPE html>
-<html lang="ja">
+{% extends "base.html"%}
+{% block title %}日報一覧{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>日誌</title>
-</head>
-
-<body>
-    {% if diary_list %}
+{% block content %}
+  {% if diary_list %}
     {% for diary in diary_list %}
-    <p><a href="{% url 'diaries:detail' diary.id %}">詳細を確認{{ diary.id }}</a></p>
-    <p>日付: {{ diary.date }}</p>
-    <p>科目コース: {{ diary.subject_id }}</p>
-    <p>講師ID: <a href="{% url 'users:detail' diary.teacher_id.id %}">{{ diary.teacher_id }}</a></p>
-    <p>生徒ID: <a href="{% url 'users:detail' diary.student_id.id %}">{{ diary.student_id }}</a></p>
-    <hr>
+      <p><a href="{% url 'diaries:detail' diary.id %}">詳細を確認{{ diary.id }}</a></p>
+      <p>日付: {{ diary.date }}</p>
+      <p>科目コース: {{ diary.subject_id }}</p>
+      <p>講師ID: <a href="{% url 'users:detail' diary.teacher_id.id %}">{{ diary.teacher_id }}</a></p>
+      <p>生徒ID: <a href="{% url 'users:detail' diary.student_id.id %}">{{ diary.student_id }}</a></p>
+      <hr>
     {% endfor %}
-
     <p><a href="{% url 'diaries:create' %}">日報の作成</a></p>
-
-    {% else %}
+  {% else %}
     <p>No Diary</p>
-    {% endif %}
-</body>
-
-</html>
+  {% endif %}
+{% endblock %}

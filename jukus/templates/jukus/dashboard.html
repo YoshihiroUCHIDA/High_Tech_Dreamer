@@ -1,0 +1,13 @@
+{% extends "base.html"%}
+{% block title %}ダッシュボード{% endblock %}
+
+{% block content %}
+  <h1>{{juku.name}}</h1>
+  <hr>
+  <h2>お知らせ</h2>
+  <p>{{juku.news}}</p>
+  <a href="/users/">生徒一覧</a>
+  <a href="/users/">講師一覧</a>
+  <a href="/subjects/">科目一覧</a>
+  {% include "users/list.html" %}
+{% endblock %}
