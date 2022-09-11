@@ -10,33 +10,17 @@
   </head>
   <body>
     {% if users_list %}
+      {% bootstrap_button button_type="submit" content="Register" size="lg" %}
 
-      <h1>{{users_list|length}}人のユーザー</h1>
-      <hr>
-      <div id="counter">
-        Counter: [[ counter ]]
-      </div>
-
-      <script>
-        const Counter = {
-          data() {
-            return { counter: 0 }
-          },
-          mounted() {
-            setInterval(() => {
-              this.counter++
-            }, 1000)
-          },
-          delimiters: ['[[', ']]'] 
-        }
-        Vue.createApp(Counter).mount('#counter')
-      </script>
-
-      {% for user in users_list %}
-        <h3><a href="/users/{{user.id}}/">{{user.name}}</a></h3>
-        <p>{{user.school}}</p>
-        <p>{{user.birth}}</p>
-      {% endfor %}
+      <ul class="list-group">
+        {% for user in users_list %}
+        <li class="list-group-item">
+          <h3><a href="/users/{{user.id}}/">{{user.name}}</a></h3>
+          <p>{{user.school}}</p>
+          <p>{{user.birth}}</p>
+        </li>
+        {% endfor %}
+      </ul>
 
     {% else %}
       <p>No Users</p>
