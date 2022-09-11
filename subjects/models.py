@@ -1,3 +1,4 @@
 from django.db import models
 
-# Create your models here.
+class subject(models.Model):
+    name = models.CharField(("科目名"), max_length=50)
