@@ -22,4 +22,5 @@ urlpatterns = [
     path('diaries/', include('diaries.urls')),
     path('subjects/', include('subjects.urls')),
     path('records/', include('records.urls')),
+    path('', include('jukus.urls')),
 ]
