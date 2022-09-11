@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'records',
     'subjects',
     'diaries',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [

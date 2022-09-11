@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+{% load django_bootstrap5 %}
 <html lang="ja">
   <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <script src="https://unpkg.com/vue@next"></script>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
   </head>
   <body>
     {% if users_list %}
