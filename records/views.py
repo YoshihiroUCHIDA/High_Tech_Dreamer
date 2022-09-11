@@ -9,7 +9,7 @@ def index(request):
     params={'data':data}
     return render(request,'list.html',params)
 
-def detail(request,records_id):
-    data=Record.objects.filter(pk=records_id)
+def detail(request,record_id):
+    data=Record.objects.filter(pk=record_id)
     params={'data':data}
     return render(request,'detail.html',params)
