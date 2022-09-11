@@ -9,8 +9,10 @@
         <div class="card-body">
           <p><a href="{% url 'diaries:detail' diary.id %}">詳細を確認{{ diary.id }}</a></p>
           <p>科目コース: {{ diary.subject_id }}</p>
+          {% comment '以下の2行をコメントアウト' %}
           <p>講師ID: <a href="{% url 'users:detail' diary.teacher_id.id %}">{{ diary.teacher_id }}</a></p>
           <p>生徒ID: <a href="{% url 'users:detail' diary.student_id.id %}">{{ diary.student_id }}</a></p>
+          {% endcomment %}
           <a class="btn btn-secondary" href="{% url 'diaries:edit' diary.id %}">編集</a>
           <a class="btn btn-danger" href="{% url 'diaries:delete' diary.id %}">削除</a>
         </div>
