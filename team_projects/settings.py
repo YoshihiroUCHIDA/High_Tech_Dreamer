@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'subjects',
     'diaries',
     'jukus',
-    #'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -133,5 +132,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'users:login' # ログインしていないときのリダイレクト先
-LOGIN_REDIRECT_URL = 'users:detail' # ログイン後のリダイレクト先
-LOGOUT_REDIRECT_URL = 'users:detail' # ログアウト後のリダイレクト先
+LOGIN_REDIRECT_URL = 'jukus:dashboard' # ログイン後のリダイレクト先
+LOGOUT_REDIRECT_URL = 'users:login' # ログアウト後のリダイレクト先

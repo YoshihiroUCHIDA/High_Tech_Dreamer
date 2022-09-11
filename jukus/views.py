@@ -1,18 +1,24 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-import jukus
 from .models import Juku
 from users.models import CustomUser
 from diaries.models import Diary
 
-def dashboard(request, juku_id):
-    juku = Juku.objects.get(pk=juku_id)
-    context = { 
-        'juku': juku,
-        'users_list' : CustomUser.objects.all(),
-        'diaries_list' : Diary.objects.all(),
-    }
-    return render(request, 'jukus/dashboard.html', context)
+def dashboard(request):
+    user = request.user
+    juku = Juku.objects.get(pk=user.juku_id)
 
-# Create your views here.
+    if user.job == "student":
+        #自分が生徒の場合は自分について書かれた日報のみ
+        diaries_list = Diary.objects.filter(student_id=user.id)
+    else:
+        diaries_list = Diary.objects.all()
+
+    params = { 
+        'juku': juku,
+        'user' : user,
+        'users_list' : CustomUser.objects.filter(juku_id=user.juku_id),
+        'diaries_list' : diaries_list
+    }
+    return render(request, 'jukus/dashboard.html', params)

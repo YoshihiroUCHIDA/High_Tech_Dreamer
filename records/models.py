@@ -31,5 +31,5 @@ class Record(models.Model):
     score=models.FloatField(_("点数"))
     averagescore=models.FloatField(_("平均点"))
 
-
-
+    def __str__(self):
+        return self.name
