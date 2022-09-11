@@ -9,12 +9,15 @@
 
 <body>
     {% if diary_list %}
+
     {% for diary in diary_list %}
     <p><a href="{% url 'diaries:detail' diary.id %}">詳細を確認{{ diary.id }}</a></p>
     <p>日付: {{ diary.date }}</p>
     <p>科目コース: {{ diary.subject_id }}</p>
     <p>講師ID: <a href="{% url 'users:detail' diary.teacher_id.id %}">{{ diary.teacher_id }}</a></p>
     <p>生徒ID: <a href="{% url 'users:detail' diary.student_id.id %}">{{ diary.student_id }}</a></p>
+    <a class="btn btn-success" href="{% url 'diaries:edit' diary.id %}">編集</a>
+    <a class="btn btn-success" href="{% url 'diaries:delete' diary.id %}">削除</a>
     <hr>
     {% endfor %}
 
