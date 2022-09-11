@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ユーザ作成</title>
+</head>
+
+<body>
+    <h1>新規ユーザの作成</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit">作成</button>
+    </form>
+</body>
+
+</html>
