@@ -1,3 +1,4 @@
+{% load django_bootstrap5 %}
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -15,6 +16,8 @@
     <p>生徒ID: <a href="{% url 'users:detail' diary.student_id.id %}">{{ diary.student_id }}</a></p>
     <hr>
     {% endfor %}
+
+    <p><a href="{% url 'diaries:create' %}">日報の作成</a></p>
 
     {% else %}
     <p>No Diary</p>
