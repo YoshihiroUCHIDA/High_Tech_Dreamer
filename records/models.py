@@ -13,7 +13,7 @@ from users.models import CustomUser
 #     name = models.CharField(_("氏名"), max_length=50)
 
 class Records(models.Model):
-    # student=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    student=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     SUBJECT_CHOICES=(
         ('国語','国語'),
         ('数学','数学'),
