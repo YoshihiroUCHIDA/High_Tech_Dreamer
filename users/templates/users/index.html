@@ -10,15 +10,17 @@
   </head>
   <body>
     {% if users_list %}
-      {% bootstrap_button button_type="submit" content="Register" size="lg" %}
-
-      <ul class="list-group">
         {% for user in users_list %}
-        <li class="list-group-item">
-          <h3><a href="/users/{{user.id}}/">{{user.name}}</a></h3>
-          <p>{{user.school}}</p>
-          <p>{{user.birth}}</p>
-        </li>
+        <div class="card">
+           <div class="card-header">
+             担当生徒
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{user.name}}</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="/users/{{user.id}}" class="btn btn-primary">生徒詳細</a>
+          </div>
+        </div>
         {% endfor %}
       </ul>
 
