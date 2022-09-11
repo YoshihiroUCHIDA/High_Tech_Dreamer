@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>日誌</title>
+</head>
+
+<body>
+    {% if diary_list %}
+    {% for diary in diary_list %}
+    <p><a href="{% url 'detail' diary.id %}">詳細を確認{{ diary.id }}</a></p>
+    <p>日付: {{ diary.date }}</p>
+    <p>講師ID: <a href="{% url 'users:detail' diary.teacher_id.id %}">{{ diary.teacher_id }}</a></p>
+    <p>生徒ID: <a href="{% url 'users:detail' diary.student_id.id %}">{{ diary.student_id }}</a></p>
+    <hr>
+    {% endfor %}
+
+    {% else %}
+    <p>No Diary</p>
+    {% endif %}
+</body>
+
+</html>
