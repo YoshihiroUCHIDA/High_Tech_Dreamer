@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
-from records.models import Records
+from records.models import Record
 
 
-admin.site.register(Records)
+admin.site.register(Record)

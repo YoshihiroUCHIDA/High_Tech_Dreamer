@@ -12,7 +12,7 @@ from users.models import CustomUser
 # class CustomUser(models.Model):
 #     name = models.CharField(_("氏名"), max_length=50)
 
-class Records(models.Model):
+class Record(models.Model):
     student=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     SUBJECT_CHOICES=(
         ('国語','国語'),
