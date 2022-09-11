@@ -1,13 +1,7 @@
-{% load django_bootstrap5 %}
-<!DOCTYPE html>
-<html lang="ja">
+{% extends "base.html"%}
+{% block title %}日報一覧{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>日誌</title>
-</head>
-
-<body>
+{% block content %}
     {% if diary_list %}
 
     {% for diary in diary_list %}
@@ -20,12 +14,8 @@
     <a class="btn btn-success" href="{% url 'diaries:delete' diary.id %}">削除</a>
     <hr>
     {% endfor %}
-
     <p><a href="{% url 'diaries:create' %}">日報の作成</a></p>
-
-    {% else %}
+  {% else %}
     <p>No Diary</p>
-    {% endif %}
-</body>
-
-</html>
+  {% endif %}
+{% endblock %}

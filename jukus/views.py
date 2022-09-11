@@ -3,15 +3,14 @@ from django.http import HttpResponse
 
 import jukus
 from .models import Juku
+from users.models import CustomUser
 
-def top(request):
-    jukus = Juku.objects.all
-    context = { 'jukus_news': jukus,}
-    return render(request, 'jukus/top.html', context)
-
-def detail(request, juku_id):
+def dashboard(request, juku_id):
     juku = Juku.objects.get(pk=juku_id)
-    context = { 'juku': juku,}
-    return render(request, 'jukus/detail.html', context)
+    context = { 
+        'juku': juku,
+        'users_list' : CustomUser.objects.all()
+    }
+    return render(request, 'jukus/dashboard.html', context)
 
 # Create your views here.

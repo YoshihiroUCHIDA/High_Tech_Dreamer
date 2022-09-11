@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('',views.top, name='top'),
-    path('<int:juku_id>/',views.detail, name='detail')
+    #path('',views.detail, name='top'),
+    path('<int:juku_id>/',views.dashboard, name='dashboard')
 ]
