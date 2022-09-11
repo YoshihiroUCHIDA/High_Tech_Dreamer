@@ -7,9 +7,9 @@ from .models import Record
 def index(request):
     data=Record.objects.all()
     params={'data':data}
-    return render(request,'list.html',params)
+    return render(request,'records/index.html',params)
 
 def detail(request,record_id):
     data=Record.objects.filter(pk=record_id)
     params={'data':data}
-    return render(request,'detail.html',params)
+    return render(request,'records/detail.html',params)
