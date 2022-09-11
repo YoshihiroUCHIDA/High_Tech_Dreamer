@@ -1,13 +1,7 @@
-{% load django_bootstrap5 %}
-<!DOCTYPE html>
-<html lang="ja">
+{% extends "base.html"%}
+{% block title %}日報の削除{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>日誌の削除</title>
-</head>
-
-<body>
+{% block content %}
     <p>範囲: {{ diary.range }}</p>
     <p>宿題: {{ diary.homework }}</p>
     <p>日付: {{ diary.date }}</p>
@@ -26,6 +20,4 @@
             </th>
         </tr>
     </form>
-</body>
-
-</html>
+{% endblock %}
