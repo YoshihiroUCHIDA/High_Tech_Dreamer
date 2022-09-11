@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.utils import timezone
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils.translation import gettext_lazy as _
+from jukus.models import Juku
 
 
 class UserManager(BaseUserManager):
@@ -33,9 +34,6 @@ class UserManager(BaseUserManager):
             raise ValueError('is_superuser=Trueである必要があります。')
         return self._create_user(email, password, **extra_fields)
 
-
-class Juku(models.Model):
-    name = models.CharField(_("塾名前"), max_length=50)
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
