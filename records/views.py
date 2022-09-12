@@ -1,14 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Record
-# Create your views here.
+from django.core import serializers
+import json
 
 
 def index(request, user_id):
-    records = Record.objects.filter(student_id=user_id)
     user = request.user
+    records = Record.objects.filter(student_id=user_id)
+    records_json = json.dumps(serializers.serialize("json", records))
     params={
-            'records_list' : records
+            'records' : records,
+            'records_json' : json.dumps(records_json)
         }
     return render(request,'records/index.html',params)
 
