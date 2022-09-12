@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils.translation import gettext_lazy as _
 from jukus.models import Juku
+from subjects.models import Subject
 
 
 class UserManager(BaseUserManager):

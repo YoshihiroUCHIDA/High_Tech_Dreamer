@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="card mx-3 my-2">
-  <div class="container  border-bottom pb-4 pt-2 " >
+  <div class="container  border-bottom pb-4 pt-4 " >
     {% if user.profile_image %}
       <div class="user_image flex ">
         <a class="nav-item"><img src="{{ user.profile_image.url }}" alt="ユーザー画面" class="img-thumbnail d-inline-block float-start me-3" width="20%" height="10%"></a>
@@ -19,11 +19,11 @@
     <h5 class="text-muted fw-normal">{{user.school}}/{{user.birth}}</h5>
   </div>
   <div class="container  border-bottom pb-4 my-4" >
-    <h2>日報</h2>
+    <h2 class = "pb-3">日報</h2>
     {% include "diaries/list.html" %}
   </div>
-  <div class="container" >
-    <h2>成績</h2>
+  <div class="container pb-4" >
+    <h2 class = "pb-3">成績</h2>
     <a href="{% url 'users:records_detail'  user.id %}">成績一覧へ</a>
   </div>
 </div>
