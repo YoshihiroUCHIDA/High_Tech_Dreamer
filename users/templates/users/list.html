@@ -1,22 +1,21 @@
-
-  {% if users_list %}
-    <div class="d-flex flex-row bd-highlight mb-3 flex-wrap">
-    {% for user in users_list %}
-    <div class="p-2 bd-highlight w-25">
-      <div class="card ">
-        <div class="card-header">
-          担当生徒
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{user.name}}</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="/users/{{user.id}}" class="btn btn-outline-primary">生徒詳細</a>
-        </div>
+{% if users_list %}
+  <div class="d-flex flex-row bd-highlight mb-3 flex-wrap">
+  {% for user in users_list %}
+  <div class="p-2 bd-highlight w-25">
+    <div class="card ">
+      <div class="card-header">
+        担当生徒
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{user.name}}</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="/users/{{user.id}}" class="btn btn-outline-primary">生徒詳細</a>
       </div>
     </div>
-    {% endfor %}
-      </div>
-  {% else %}
-    <p>No Users</p>
-  {% endif %}
+  </div>
+  {% endfor %}
+    </div>
+{% else %}
+  <p>No Users</p>
+{% endif %}
 

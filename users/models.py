@@ -38,15 +38,17 @@ class UserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_("email_address"), unique=True)
+    email = models.EmailField(_("メールアドレス"), unique=True)
     name = models.CharField(_("氏名"), max_length=50)
     school = models.CharField(_("学校名"), max_length=50)
+    bio = models.CharField(_("自己紹介"), max_length=150)
     birth = models.DateTimeField(_("生年月日"),null=True)
     job = models.CharField(_("講師or生徒"), max_length=20, choices=(('teacher','講師'),('student','生徒'),('manager','管理者')))
+    profile_image = models.ImageField(null=True, blank=True)
+
     juku = models.ForeignKey(Juku, on_delete=models.CASCADE,null=True)
     subjects = models.ManyToManyField(Subject,null=True)
 
-    profile_image = models.ImageField(null=True, blank=True)
 
     is_staff = models.BooleanField(_("staff status"), default=False)
     is_active = models.BooleanField(_("active"), default=True)
