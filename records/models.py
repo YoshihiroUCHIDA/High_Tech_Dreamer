@@ -30,6 +30,3 @@ class Record(models.Model):
     subject=models.CharField(_("科目選択"), max_length=20, choices=SUBJECT_CHOICES)
     score=models.FloatField(_("点数"))
     averagescore=models.FloatField(_("平均点"))
-
-    def __str__(self):
-        return self.name
