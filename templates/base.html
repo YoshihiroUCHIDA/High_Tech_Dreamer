@@ -1,52 +1,55 @@
 <!doctype html>
 {% load django_bootstrap5 %}
 <html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    <title>{% block title %}{% endblock %}</title>
-<style>
-  .original-gradient {
-    background-color: #3ff471;
-    background-image: linear-gradient(132deg, #3ff471 0%, #16A085 100%);
 
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% bootstrap_css %}
+	{% bootstrap_javascript %}
+	<title>{% block title %}{% endblock %}</title>
+	<link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet">
+	<style>
+		.original-gradient {
+			background-color: #3ff471;
+			background-image: linear-gradient(132deg, #3ff471 0%, #16A085 100%);
+		}
+	</style>
 
+</head>
 
-  } 
-</style>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="/">Proglesson</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="/">{{user.juku}}</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/subjects/">科目</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/users/">講師</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/users/">生徒</a>
+					</li>
+				</ul>
+				<a class="btn btn-outline-secondary" href="{% url 'users:logout' %}">ログアウト</a>
+			</div>
+		</div>
+	</nav>
+	<div class="m-0 py-2 original-gradient">
+		{% block content %}{% endblock %}
+	</div>
 
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">Proglesson</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="/">{{user.juku}}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/subjects/">科目</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/users/">講師</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/users/">生徒</a>
-            </li>
-          </ul>
-          <a class="btn btn-outline-secondary" href="{% url 'users:logout' %}">ログアウト</a>
-        </div>
-      </div>
-    </nav>
-    <div class="m-0 py-2 original-gradient">
-      {% block content %}{% endblock %}
-    </div>
+</body>
 
-  </body>
 </html>

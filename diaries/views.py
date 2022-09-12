@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from diaries.models import Diary
 from .forms import DiaryForm
+from django.views.decorators.http import require_POST
 
 # --------------------------------------------------
 # 日報リストの表示
@@ -53,15 +54,8 @@ def edit(request, diary_id):
 
 # --------------------------------------------------
 # 日報の削除
+@require_POST
 def delete(request, diary_id):
     diary = Diary.objects.get(id=diary_id)
-    
-    if (request.method == 'POST'):
-        diary.delete()
-        return redirect(to='/diaries')
-    
-    params = {
-        'id': diary_id,
-        'diary': diary,
-    }
-    return render(request, 'diaries/delete.html', params)
+    diary.delete()
+    return redirect(to='/diaries')
