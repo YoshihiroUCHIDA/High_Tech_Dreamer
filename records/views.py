@@ -4,9 +4,12 @@ from .models import Record
 # Create your views here.
 
 
-def index(request):
-    data=Record.objects.all()
-    params={'data':data}
+def index(request, user_id):
+    records = Record.objects.filter(student_id=user_id)
+    user = request.user
+    params={
+            'records_list' : records
+        }
     return render(request,'records/index.html',params)
 
 def detail(request,record_id):
