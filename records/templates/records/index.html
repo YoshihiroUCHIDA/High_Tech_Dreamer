@@ -2,57 +2,23 @@
 {% block title %}テスト結果一覧{% endblock %}
 
 {% block content %}
-<h1>テスト結果一覧</h1>
-    <p>模試</p>
-    <table border="1">
-        <tr>
-            <th>科目</th>
-            <th>点数</th>
-            <th>形式</th>
-            <th>日付</th>
-            <th>詳細</th>
-        </tr>
-        {% for records in data %}
-        {% if records.type == "模試" %}
-        <tr>
+<div class="container my-4 py-3 bg-white rounded-3">
+  <h1 class="fw-bold">テスト</h1>
+  <hr>
+  <div class="container my-4 py-3 bg-light">
+    <h3 class="">定期テスト</h2>
+  </div>
+  <hr>
+  <div class="container my-4 py-3 bg-light">
+    <h3 class="">模試</h2>
+  </div>
+  <hr>
+  <ul class="list-group list-group-flush">
+    {% for record in records_list %}
+    <li class="list-group-item">{{record.name}} - {{record.date|date:"n月j日 (D)"}} 平均点<a href="{% url 'records:detail' record.id %}" class="btn btn-outline-primary">></a></li>
+    {% endfor %}
+  </ul>
 
-            <td>{{ records.subject }}</td>
-            <td>{{ records.score }}</td>
-            <td>{{ records.type }}</td>
-            <td>{{ records.day }}</td>
-            <td>
-              <a href={% url 'records:detail' records.id %}>
-                詳細
-            </a>
-            </td>
-            
-        </tr>
-        {% endif %}
-        {% endfor %}
-    </table>
-    <p>定期</p>
-    <table border="1">
-        <tr>
-            <th>科目</th>
-            <th>点数</th>
-            <th>形式</th>
-            <th>日付</th>
-            <th>詳細</th>
-        </tr>
-        {% for records in data %}
-        {% if records.type == "定期" %}
-        <tr>
-            <td>{{ records.subject }}</td>
-            <td>{{ records.score }}</td>
-            <td>{{ records.type }}</td>
-            <td>{{ records.day }}</td>
-            <td>
-                <a href={% url 'records:detail' records.id %}>
-                    詳細
-                </a>
-                </td>
-        </tr>
-        {% endif %}
-        {% endfor %}
-    </table>
+</div>
+
 {% endblock %}
