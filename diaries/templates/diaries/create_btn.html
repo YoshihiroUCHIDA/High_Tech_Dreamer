@@ -1,1 +1,13 @@
-<a class="btn btn-primary" href="{% url 'diaries:create' %}">日報の作成</a>
+<head>
+    <style>
+.fixed_btn
+{
+  position: fixed;
+  bottom: 20px; 
+  right: 20px;
+  padding: 6px 40px;
+  opacity: 1;
+}
+    </style>
+    </head>
+<a class="btn btn-primary fixed_btn shadow-lg" href="{% url 'diaries:create' %}">日報の作成</a>
