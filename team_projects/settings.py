@@ -134,3 +134,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'users:login' # ログインしていないときのリダイレクト先
 LOGIN_REDIRECT_URL = 'jukus:dashboard' # ログイン後のリダイレクト先
 LOGOUT_REDIRECT_URL = 'users:login' # ログアウト後のリダイレクト先
+
+#画像アップロード機能↓
+MEDIA_URL = '/media/'
+if DEBUG:
+    MEDIA_ROOT = BASE_DIR / 'media' #ローカル環境
+else:
+    MEDIA_ROOT = f'/var/www/{BASE_DIR.name}/media'  #本番環境
+

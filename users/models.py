@@ -44,6 +44,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     job = models.CharField(_("講師or生徒"), max_length=20, choices=(('teacher','講師'),('student','生徒'),('manager','管理者')))
     juku = models.ForeignKey(Juku, on_delete=models.CASCADE,null=True)
 
+    profile_image = models.ImageField(null=True, blank=True)
+
     is_staff = models.BooleanField(_("staff status"), default=False)
     is_active = models.BooleanField(_("active"), default=True)
 
