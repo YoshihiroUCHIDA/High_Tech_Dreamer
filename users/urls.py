@@ -10,5 +10,6 @@ urlpatterns = [
     path('login/', views.MyLoginView.as_view(), name="login"),
     #path('',views.MyLoginView.as_view(), name="empty_url_login"),
     path('logout/', views.MyLogoutView.as_view(), name="logout"),
-    path('index/',views.index, name="index")
+    path('index/',views.index, name="index"),
+    path('teacher_index/',views.teacher_index, name="teacher_index")
 ]

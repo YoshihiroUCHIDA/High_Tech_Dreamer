@@ -5,12 +5,22 @@
     <div class="p-2 bd-highlight w-25">
         <div class="card ">
           <div class="card-header">
-            担当生徒
+            {% if user.job == "student" %}
+              担当生徒
+            {% else %}
+              講師
+            {% endif %}
           </div>
           <div class="card-body">
             <h5 class="card-title">{{user.name}}</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="/users/{{user.id}}" class="btn btn-outline-primary">生徒詳細</a>
+            <a href="/users/{{user.id}}" class="btn btn-outline-primary">
+              {% if user.job == "student" %}
+                生徒詳細
+              {% else %}
+                講師詳細
+              {% endif %}
+            </a>
           </div>
         </div>
     </div>

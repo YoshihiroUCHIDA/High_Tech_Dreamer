@@ -15,6 +15,11 @@ def index(request):
     params = { 'users_list': users,}
     return render(request, 'users/index.html', params)
 
+def teacher_index(request):
+    users = CustomUser.objects.filter(job="teacher")
+    params = { 'users_list': users,}
+    return render(request, 'users/teacher_index.html', params)
+
 def detail(request, user_id):
     user = CustomUser.objects.get(pk=user_id)
     diaries = Diary.objects.filter(student_id=user.id)
