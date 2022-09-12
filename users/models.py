@@ -49,7 +49,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     juku = models.ForeignKey(Juku, on_delete=models.CASCADE,null=True)
     subjects = models.ManyToManyField(Subject,null=True)
 
-
     is_staff = models.BooleanField(_("staff status"), default=False)
     is_active = models.BooleanField(_("active"), default=True)
 
