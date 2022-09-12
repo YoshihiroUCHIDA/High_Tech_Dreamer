@@ -1,7 +1,10 @@
-{% extends "base.html"%}
+{% extends "base.html" %}
+
 {% block title %}日報の編集{% endblock %}
 
 {% block content %}
+<div class="container my-4 py-3 bg-light rounded-3">
+    <h1>編集項目</h1>
     <form action="{% url 'diaries:edit' id %}" method="post">
         {% csrf_token %}
         <table class="table">
@@ -9,10 +12,11 @@
             <tr>
                 <th>
                 <td>
-                    <input type="submit" value="click" class="btn btn-primary mt-2">
+                    <input type="submit" value="作成" class="btn btn-primary mt-2">
                 </td>
                 </th>
             </tr>
         </table>
     </form>
+</div>
 {% endblock%}
