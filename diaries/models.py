@@ -14,6 +14,3 @@ class Diary(models.Model):
     teacher_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='teacher', to_field='id')
     student_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='student', to_field='id')
     remark = models.CharField(_('備考'), max_length=100)
-
-    def __str__(self):
-        return self.name
