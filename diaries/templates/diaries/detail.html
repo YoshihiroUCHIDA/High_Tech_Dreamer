@@ -1,12 +1,46 @@
-{% extends "base.html"%}
-{% block title %}日報の詳細{% endblock %}
+{% extends "base.html" %}
+
+{% block title %}
+日報の詳細
+{% endblock %}
 
 {% block content %}
-  <p>範囲: {{ diary.range }}</p>
-  <p>宿題: {{ diary.homework }}</p>
-  <p>日付: {{ diary.date }}</p>
-  <p>内容: {{ diary.content }}</p>
-  <p>講師ID: {{ diary.teacher_id }}</p>
-  <p>生徒ID: {{ diary.student_id }}</p>
-  <p>備考: {{ diary.remark }}</p>
+<div class="container my-4 py-3 bg-light rounded-3">
+  <div class="card">
+    <!--ヘッダ-->
+    <div class="card-header">
+      {{ diary.date|date:"n月j日 (D)" }}
+      <span class="badge bg-{{diary.subject_id.color}}"> {{ diary.subject_id }}</span>
+    </div>
+
+    <!--中身-->
+    <div class="card-body">
+      <p><span class="badge bg-secondary">生徒</span>
+        {{ diary.student_id }}
+        <span class="badge bg-secondary">講師</span>
+        {{ diary.teacher_id }}
+      </p>
+      <hr>
+
+      <p class="fs-6 text-secondary">内容</p>
+      <p class="fs-6">{{ diary.content }}</p>
+      <hr>
+
+      <p class="fs-6 text-secondary">担当範囲</p>
+      <p class="fs-6">{{ diary.range }}</p>
+      <hr>
+
+      <p class="fs-6 text-secondary">宿題</p>
+      <p class="fs-6">{{ diary.homework }}</p>
+      <hr>
+
+      <p class="fs-6 text-secondary">備考</p>
+      <p class="fs-6">{{ diary.remark }}</p>
+      <hr>
+    </div>
+  </div>
+
+  <a class="btn btn-primary" href="{% url 'diaries:edit' diary.id %}">編集</a>
+  <a class="btn btn-danger" href="{% url 'diaries:delete' diary.id %}">削除</a>
+</div>
 {% endblock %}
