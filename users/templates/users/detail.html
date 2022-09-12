@@ -9,13 +9,17 @@
         <a class="nav-item"><img src="{{ user.profile_image.url }}" alt="ユーザー画面" class="img-thumbnail d-inline-block float-start" width="20%" height="10%"></a>
       </div>
     {% endif %}
-    <h1 class="display-3">{{user.name}}</h1>
-    <h5>{{user.school}}/{{user.birth}}</h5>
-    <p class="">{{user.job}}</p>
-  </div>
-  <div class="container  border-bottom pb-1" >
-    {% include "diaries/list.html" %}
-  </div>
+
+    <h2>{{user.name}}
+        {% if user.job == "student" %}
+          <span class="badge bg-success">生徒</span>
+        {% else %}
+          <span class="badge bg-primary">講師</span>
+        {% endif %}
+    </h2>
+     <h5>{{user.school}}/{{user.birth}}</h5>
+   </div>
+  {% include "diaries/list.html" %}
   <div class="container" >
     <h2>成績</h2>
   </div>
