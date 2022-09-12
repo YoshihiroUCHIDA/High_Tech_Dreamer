@@ -18,9 +18,9 @@
           <hr>
           <div class="container my-3">
             {% if user.job == "student" %}
-              <p class="fs-6 text-secondary">受講科目</p>
+              <span class="fs-6 text-secondary">受講科目</span><br>
             {% else %}
-              <p class="fs-6 text-secondary">担当教科</p>
+              <span class="fs-6 text-secondary">担当教科</span><br>
             {% endif %}
             {% for subjects in user.subjects.all %}
               <span class="badge bg-{{subjects.color}}">{{subjects}}</span>
