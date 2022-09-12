@@ -8,10 +8,17 @@ import json
 def index(request, user_id):
     user = request.user
     records = Record.objects.filter(student_id=user_id)
-    records_json = json.dumps(serializers.serialize("json", records))
+    records_teiki = Record.objects.filter(student_id=user_id).filter(type="定期")
+    records_moshi = Record.objects.filter(student_id=user_id).filter(type="模試")
+    records_teiki_json = json.dumps(serializers.serialize("json", records_teiki))
+    records_moshi_json = json.dumps(serializers.serialize("json", records_moshi))
+
     params={
             'records' : records,
-            'records_json' : json.dumps(records_json)
+            'records_teiki' : records_teiki,
+            'records_moshi' : records_moshi,
+            'records_teiki_json' : json.dumps(records_teiki_json),
+            'records_moshi_json' : json.dumps(records_moshi_json),
         }
     return render(request,'records/index.html',params)
 
