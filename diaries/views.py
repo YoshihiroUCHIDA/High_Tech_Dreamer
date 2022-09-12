@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from diaries.models import Diary
+from users.models import CustomUser
 from .forms import DiaryForm
 from django.views.decorators.http import require_POST
+from django.contrib.auth.models import User
 
 # --------------------------------------------------
 # 日報リストの表示
@@ -26,14 +28,19 @@ def detail(request, diary_id):
 # 日報の作成
 def create(request):
     if (request.method == 'POST'):
-        obj = Diary()
-        diary = DiaryForm(request.POST, instance=obj)
+        diary = DiaryForm(request.POST)
         diary.save()
         return redirect(to='/diaries')
 
-    params = {
-        'form': DiaryForm(),
-    }
+    data = CustomUser.objects.get(id=request.user.id)
+    if (data.job == 'teacher'):
+        params = {
+            'form': DiaryForm(initial={'teacher_id': data}),
+        }
+    else:
+        params = {
+            'form': DiaryForm(),
+        }
     return render(request, 'diaries/create.html', params)
 
 # --------------------------------------------------
