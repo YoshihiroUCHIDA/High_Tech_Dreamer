@@ -16,7 +16,7 @@
   <div class="container my-4 py-3 bg-light rounded-3">
     <h3 class="fw-bold">生徒</h3>
     <a class="btn btn-primary " href="{% url 'users:index' %}">生徒一覧</a>
-  {% include "users/list.html" %}
+    {% include "users/list.html" %}
   </div>
   {% include "diaries/create_btn.html" %}
 {% endblock %}
