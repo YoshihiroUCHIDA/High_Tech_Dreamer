@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils.translation import gettext_lazy as _
 from jukus.models import Juku
+from subjects.models import Subject
 
 
 class UserManager(BaseUserManager):
@@ -43,6 +44,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     birth = models.DateTimeField(_("生年月日"),null=True)
     job = models.CharField(_("講師or生徒"), max_length=20, choices=(('teacher','講師'),('student','生徒'),('manager','管理者')))
     juku = models.ForeignKey(Juku, on_delete=models.CASCADE,null=True)
+    subjects = models.ManyToManyField(Subject,null=True)
 
     profile_image = models.ImageField(null=True, blank=True)
 
