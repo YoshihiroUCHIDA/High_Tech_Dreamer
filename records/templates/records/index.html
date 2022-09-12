@@ -15,7 +15,10 @@
   <hr>
   <ul class="list-group list-group-flush">
     {% for record in records_list %}
-    <li class="list-group-item">{{record.name}} - {{record.date|date:"n月j日 (D)"}} 平均点<a href="{% url 'records:detail' record.id %}" class="btn btn-outline-primary">></a></li>
+    <li class="list-group-item">
+      {{record.name}} - {{record.date|date:"n月j日 (D)"}} 平均点
+        <a href="{% url 'records:detail' record.id %}" class="btn btn-outline-primary">詳細</a>
+    </li>
     {% endfor %}
   </ul>
 
