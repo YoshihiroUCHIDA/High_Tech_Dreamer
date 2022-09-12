@@ -6,7 +6,7 @@ from .forms import DiaryForm
 # --------------------------------------------------
 # 日報リストの表示
 def index(request):
-    diary = Diary.objects.all()
+    diary = Diary.objects.all().order_by("date").reverse()
     params = {
         'diaries_list': diary,
     }

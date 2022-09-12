@@ -2,6 +2,9 @@
 {% block title %}日報一覧{% endblock %}
 
 {% block content %}
+<div class="container my-4 py-3 bg-light rounded-3">
+  <h3 class="fw-bold">日報</h3>
   {% include "diaries/list.html" %}
+</div>
   {% include "diaries/create_btn.html" %}
 {% endblock %}

@@ -11,9 +11,9 @@ def dashboard(request):
     student= CustomUser.objects.filter(juku_id=user.juku_id).filter(job="student")
     if user.job == "student":
         #自分が生徒の場合は自分について書かれた日報のみ
-        diaries_list = Diary.objects.filter(student_id=user.id)
+        diaries_list = Diary.objects.filter(student_id=user.id).order_by("date").reverse()[0:4]
     else:
-        diaries_list = Diary.objects.all()
+        diaries_list = Diary.objects.all().order_by("date").reverse()[0:4]
 
     params = { 
         'juku': juku,
