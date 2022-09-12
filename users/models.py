@@ -44,6 +44,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     birth = models.DateTimeField(_("生年月日"),null=True)
     job = models.CharField(_("講師or生徒"), max_length=20, choices=(('teacher','講師'),('student','生徒'),('manager','管理者')))
     juku = models.ForeignKey(Juku, on_delete=models.CASCADE,null=True)
+    subjects = models.ManyToManyField(Subject,null=True)
 
     profile_image = models.ImageField(null=True, blank=True)
 
