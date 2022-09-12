@@ -1,8 +1,7 @@
-
-  {% if users_list %}
-    <div class="d-flex flex-row bd-highlight mb-3 flex-wrap">
+{% if users_list %}
+  <div class="d-flex flex-row bd-highlight mb-3 flex-wrap">
     {% for user in users_list %}
-    <div class="p-2 bd-highlight w-25">
+      <div class="p-2 bd-highlight w-25">
         <div class="card ">
           <div class="card-header">
             担当生徒
@@ -13,9 +12,9 @@
             <a href="/users/{{user.id}}" class="btn btn-outline-primary">生徒詳細</a>
           </div>
         </div>
-    </div>
-    {% endfor %}
       </div>
-  {% else %}
-    <p>No Users</p>
-  {% endif %}
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No Users</p>
+{% endif %}

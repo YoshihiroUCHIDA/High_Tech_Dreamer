@@ -2,21 +2,63 @@
 {% block title %}ダッシュボード{% endblock %}
 
 {% block content %}
-  <div class="container my-4 py-3 bg-light rounded-3">
-    <h3 class="fw-bold">お知らせ</h3>
-    <div class="alert alert-success" role="alert">
-      {{juku.news}}
+  <div class="px-4 my-4">
+    <div class="row">
+      <div class="col-3">
+        <div class="container bg-light rounded-3 py-3 shadow-lg">
+          <div id="aaaaaaaaaaaa" class="container my-3 px-3">
+            <img src="{{ user.profile_image.url }}" class="img-fluid rounded">
+          </div>
+          <div class="container">
+            <h3 class="fw-bold">{{ user.name }}</h3>
+          </div>
+          <div class="container">
+            <p>{{ user.bio }}</p>
+          </div>
+          <hr>
+          <div class="container my-3">
+            {% if user.job == "student" %}
+              <p class="fs-6 text-secondary">受講科目</p>
+            {% else %}
+              <p class="fs-6 text-secondary">担当教科</p>
+            {% endif %}
+            {% for subjects in user.subjects.all %}
+              <span class="badge bg-{{subjects.color}}">{{subjects}}</span>
+            {% endfor %}
+          </div>
+          <div class="container my-3">
+            <p>{{user.school}}</p>
+          </div>
+          <div class="container my-3">
+            <a href="#" class="btn btn-outline-secondary">プロフィールを編集</a>
+          </div>
+          <hr>
+          <div class="container my-3">
+            バッジとか置く
+          </div>
+        </div>
+      </div>
+      <div class="col-9">
+        <div class="container bg-light rounded-3 py-3 shadow-lg">
+          <h3 class="fw-bold">お知らせ</h3>
+          <div class="alert alert-success" role="alert">
+            {{juku.news}}
+          </div>
+        </div>
+        <div class="container my-4 py-3 bg-light rounded-3">
+          <h3 class="fw-bold">
+            <a class="text-decoration-none text-success" href="{% url 'users:index' %}">担当生徒</a>
+          </h3>
+          {% include "users/list.html" %}
+        </div>
+        <div class="container my-4 py-3 bg-light rounded-3 shadow-lg">
+          <h3 class="fw-bold">
+            <a class="text-decoration-none text-success" href="{% url 'diaries:index' %}">日報</a>
+          </h3>
+          {% include "diaries/list.html" %}
+        </div>
+        {% include "diaries/create_btn.html" %}
+      </div>
     </div>
   </div>
-  <div class="container my-4 py-3 bg-light rounded-3">
-    <h3 class="fw-bold">日報</h3>
-    <a class="btn btn-primary " href="{% url 'diaries:index' %}">日報一覧</a>
-  {% include "diaries/list.html" %}
-  </div>
-  <div class="container my-4 py-3 bg-light rounded-3">
-    <h3 class="fw-bold">生徒</h3>
-    <a class="btn btn-primary " href="{% url 'users:index' %}">生徒一覧</a>
-    {% include "users/list.html" %}
-  </div>
-  {% include "diaries/create_btn.html" %}
 {% endblock %}
