@@ -1,8 +1,8 @@
 
   {% if diaries_list %}
-    <div class="row">
+  <div class="d-flex flex-row bd-highlight mb-3 flex-wrap">
     {% for diary in diaries_list %}
-      <div class="col">
+      <div class="p-2 bd-highlight w-25">
         <div class="card">
           <div class="card-header">
             {{ diary.date|date:"n月j日 (D)" }} - {{ diary.student_id.name }}
@@ -18,7 +18,7 @@
         </div>
       </div>
     {% endfor %}
-    </div>
+  </div>
   {% else %}
     <p>No Diary</p>
   {% endif %}
