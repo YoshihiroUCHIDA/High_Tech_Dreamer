@@ -2,11 +2,23 @@
 {% block title %}ユーザー一覧{% endblock %}
 
 {% block content %}
-<div class="card">
-  <h1 class="display-3">{{user.name}}</h1>
-  <h3>{{user.school}}</h1>
-  <h3>{{user.birth}}</h1>
-  {% include "diaries/list.html" %}
+<div class="card mx-3 my-2">
+  <div class="container  border-bottom pb-4 pt-2" >
+    {% if user.profile_image %}
+      <div class="user_image flex ">
+        <a class="nav-item"><img src="{{ user.profile_image.url }}" alt="ユーザー画面" class="img-thumbnail d-inline-block float-start" width="20%" height="10%"></a>
+      </div>
+    {% endif %}
+    <h1 class="display-3">{{user.name}}</h1>
+    <h5>{{user.school}}/{{user.birth}}</h5>
+    <p class="">{{user.job}}</p>
+  </div>
+  <div class="container  border-bottom pb-1" >
+    {% include "diaries/list.html" %}
+  </div>
+  <div class="container" >
+    <h2>成績</h2>
+  </div>
 </div>
 {% endblock %}
 
