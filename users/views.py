@@ -11,7 +11,7 @@ from diaries.models import Diary
 # Create your views here.
 
 def index(request):
-    users = CustomUser.objects.all()
+    users = CustomUser.objects.filter(job="student")
     params = { 'users_list': users,}
     return render(request, 'users/index.html', params)
 
