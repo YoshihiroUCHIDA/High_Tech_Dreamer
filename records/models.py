@@ -13,20 +13,32 @@ from users.models import CustomUser
 #     name = models.CharField(_("氏名"), max_length=50)
 
 class Record(models.Model):
-    student=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
-    SUBJECT_CHOICES=(
-        ('国語','国語'),
-        ('数学','数学'),
-        ('理科','理科'),
-        ('社会','社会'),
-        ('英語','英語'),
-    )
+    name = models.CharField(_("テスト名"), max_length=50)
+    date = models.DateField(_("年月日"),null=True)
+    student = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     TYPE_CHOICES=(
         ('定期','定期'),
         ('模試','模試'),
     )
-    day = models.DateField(_("年月日"),null=True)
-    type=models.CharField(_("定期or模試"), max_length=20, choices=TYPE_CHOICES)
-    subject=models.CharField(_("科目選択"), max_length=20, choices=SUBJECT_CHOICES)
-    score=models.FloatField(_("点数"))
-    averagescore=models.FloatField(_("平均点"))
+    type = models.CharField(_("定期or模試"), max_length=20, choices=TYPE_CHOICES)
+
+    socre_japanese = models.FloatField(_("国語の点数"))
+    score_math     = models.FloatField(_("数学の点数"))
+    score_english  = models.FloatField(_("英語の点数"))
+    score_sience   = models.FloatField(_("理科の点数"))
+    score_social   = models.FloatField(_("社会の点数"))
+
+    average_japanese = models.FloatField(_("国語の平均点"))
+    average_math     = models.FloatField(_("数学の平均点"))
+    average_english  = models.FloatField(_("英語の平均点"))
+    average_sience   = models.FloatField(_("理科の平均点"))
+    average_social   = models.FloatField(_("社会の平均点"))
+
+    diviation_japanese = models.FloatField(_("国語の偏差値"))
+    diviation_math     = models.FloatField(_("数学の偏差値"))
+    diviation_english  = models.FloatField(_("英語の偏差値"))
+    diviation_sience   = models.FloatField(_("理科の偏差値"))
+    diviation_social   = models.FloatField(_("社会の偏差値"))
+
+    def __str__(self):
+        return self.name
