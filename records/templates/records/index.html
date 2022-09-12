@@ -1,4 +1,5 @@
 {% extends "base.html"%}
+{% load static %}
 {% block title %}テスト結果一覧{% endblock %}
 
 {% block content %}
@@ -7,6 +8,7 @@
   <hr>
   <div class="container my-4 py-3 bg-light">
     <h3 class="">定期テスト</h2>
+    <canvas id="myChart" width="100%" height="100"></canvas>
   </div>
   <hr>
   <div class="container my-4 py-3 bg-light">
@@ -14,11 +16,18 @@
   </div>
   <hr>
   <ul class="list-group list-group-flush">
-    {% for record in records_list %}
-    <li class="list-group-item">{{record.name}} - {{record.date|date:"n月j日 (D)"}} 平均点<a href="{% url 'records:detail' record.id %}" class="btn btn-outline-primary">></a></li>
+    {% for record in records %}
+    <li class="list-group-item">
+      {{record.name}} - {{record.date|date:"n月j日 (D)"}} 平均点
+        <a href="{% url 'records:detail' record.id %}" class="btn btn-outline-primary">詳細</a>
+    </li>
     {% endfor %}
   </ul>
 
 </div>
+<script>
+  var records = {{records_json|safe}};
+</script>
+<script src="{% static 'chart.js' %}"></script>
 
 {% endblock %}

@@ -22,7 +22,7 @@ class Record(models.Model):
     )
     type = models.CharField(_("定期or模試"), max_length=20, choices=TYPE_CHOICES)
 
-    socre_japanese = models.FloatField(_("国語の点数"))
+    score_japanese = models.FloatField(_("国語の点数"))
     score_math     = models.FloatField(_("数学の点数"))
     score_english  = models.FloatField(_("英語の点数"))
     score_sience   = models.FloatField(_("理科の点数"))

@@ -21,7 +21,7 @@
     {% if user.job == "student" %}
       <h4 class = "pt-3">受講科目</h4>
     {% else %}
-      <h4>担当教科</h4>
+      <h4 class = "pt-3">担当教科</h4>
     {% endif %}
 
     {% for subjects in user.subjects.all %}
@@ -29,14 +29,16 @@
     {% endfor %}
 
   </div>
-  <div class="container  border-bottom pb-4 my-4" >
-    <h2 class = "pb-3">日報</h2>
-    {% include "diaries/list.html" %}
-  </div>
-  <div class="container pb-4" >
-    <h2 class = "pb-3">成績</h2>
-    <a href="{% url 'users:records_detail'  user.id %}">成績一覧へ</a>
-  </div>
-</div>
+    {% if user.job == "student" %}
+      <div class="container  border-bottom pb-4 my-4" >
+        <h2 class = "pb-3">日報</h2>
+        {% include "diaries/list.html" %}
+      </div>
+      <div class="container pb-4" >
+        <h2 class = "pb-3">成績</h2>
+        <a href="{% url 'users:records_detail'  user.id %}">成績一覧へ</a>
+      </div>
+    {% else %}
+    {% endif %}
 {% endblock %}
 
