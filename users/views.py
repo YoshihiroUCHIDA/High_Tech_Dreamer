@@ -58,6 +58,7 @@ def ConvertToGrade(birthday):
     else:           #遅生まれ
         g = today_y - birth_y - 1
 
+    grade = "999"
     if g == 6:
         grade = "小学1年生"
     elif g == 7:
