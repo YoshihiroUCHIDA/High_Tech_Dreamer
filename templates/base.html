@@ -1,5 +1,6 @@
 <!doctype html>
 {% load django_bootstrap5 %}
+{% load bootstrap_icons %}
 <html lang="ja">
 <head>
 	<meta charset="utf-8">
@@ -14,42 +15,74 @@
 			background-color: #3ff471;
 			background-image: linear-gradient(132deg, #3ff471 0%, #16A085 100%);
 		}
+    .bg-first {
+      background-color: #f6f6f6;
+    }
+    .bg-second{
+      background-color: #d6e4f0;
+    }
+    .bg-third {
+      background-color: #1e56a0
+    }
+    .bg-fourth {
+      background-color: #163172;
+    }
+    .text-first {
+      color: #f6f6f6;
+    }
+    .text-second{
+      color: #d6e4f0;
+    }
+    .text-third {
+      color: #1e56a0
+    }
+    .text-fourth {
+      color: #163172;
+    }
     .full {
         min-height: 100vh;
+    }
+    .vertical-middle{
+      background: yellow; 
+      display: inline-block; 
+      vertical-align: middle; 
     }
 	</style>
 
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light nav-gradient">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="/">Proglesson</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<a class="nav-link" href="/">{{user.juku}}</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/subjects/">科目</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/users/teacher_index">講師</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/users/index">生徒</a>
-					</li>
-				</ul>
-				<a class="btn btn-outline-secondary" href="{% url 'users:logout' %}">ログアウト</a>
-			</div>
-		</div>
-	</nav>
-	<div class="m-0 py-2 bg-gradient full">
+  <div class="px-3 py-2 bg-third shadow-lg">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="/" class="d-flex align-items-center text-white my-2 my-lg-0 me-lg-auto text-decoration-none">
+            Proglesson
+          </a>
+
+          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+            <li>
+              <a href="{% url 'jukus:dashboard' %}" class="nav-link text-white">
+                {% bs_icon 'speedometer2' size='1.5em' extra_classes='bi d-block mx-auto mb-1' %}
+                ホーム
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'users:index' %}" class="nav-link text-white">
+                {% bs_icon 'people-fill' size='1.5em' extra_classes='bi d-block mx-auto mb-1' %}
+                生徒
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link text-white">
+                {% bs_icon 'gear-wide-connected' size='1.5em' extra_classes='bi d-block mx-auto mb-1' %}
+                設定
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	<div class="m-0 py-2 bg-second full">
 		{% block content %}{% endblock %}
 	</div>
 

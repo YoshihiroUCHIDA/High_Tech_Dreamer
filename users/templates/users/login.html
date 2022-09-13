@@ -3,26 +3,24 @@
 
 {% block content %}
 <div class="container mx-5" style="margin-top:10vh">
-    <h1 class="fw-bold text-white text-center">
-        ログインする
-    </h1>
+  <h1 class="fw-bold text-dark text-center">
+    ログインする
+  </h1>
 </div>
 
 <div class="fw-bold card mx-5 my-3">
-    <form action="" method="POST">
-        {% csrf_token %}
-        {% for item in form %}
-        <div class="form-group mx-3 ">
-            <label for="{{item.id_for_label}}" class="mt-4">{{item.label}}</label>
-            <input type="{{item.field.widget.input_type}}" class="form-control mb-2 my-2" name="{{item.name}}"
-                id="{{item.id_for_label}}" aria-describedby="passwordHelpInline">
-        </div>
-        {% endfor %}
-        <div class="text-end mx-5">
-            <button type="submit" class="submit btn btn-primary my-3">ログイン</button>
-        </div>
-    </form>
-</div>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {% for item in form %}
+      <div class="form-group mx-3 ">
+        <label for="{{item.id_for_label}}" class="mt-4">{{item.label}}</label>
+        <input type="{{item.field.widget.input_type}}" class="form-control mb-2 my-2" name="{{item.name}}" id="{{item.id_for_label}}" aria-describedby="passwordHelpInline">
+      </div>
+     {% endfor %}
+     <div class="text-end mx-5">
+      <button type="submit" class="submit btn btn-primary my-3">ログイン</button>
+     </div>
+  </form>
 </div>
 
 {% endblock %}

@@ -13,8 +13,10 @@ def dashboard(request):
 
     following = Follow.objects.filter(owner=user)
     following_list = []
-    for f in following:
-        following_list.append(f.follow_target)
+    i = 0
+    while i < 4 and i < len(following):
+        following_list.append(following[i].follow_target)
+        i += 1
 
     if user.job == "student":
         diaries_list = Diary.objects.filter(student_id=user.id).order_by("date").reverse()[0:4]
