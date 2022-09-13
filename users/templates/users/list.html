@@ -1,7 +1,7 @@
-
-  {% if users_list %}
-    <div class="d-flex flex-row bd-highlight mb-3 flex-wrap">
+{% if users_list %}
+  <div class="d-flex flex-row bd-highlight mb-3 flex-wrap">
     {% for user in users_list %}
+<<<<<<< HEAD
     <div class="p-2 bd-highlight w-25">
         <div class="card ">
           <div class="card-header">
@@ -21,11 +21,32 @@
                 講師詳細
               {% endif %}
             </a>
+=======
+      <div class="p-2 bd-highlight w-25">
+        <div class="container rounded-3 border bg-white py-2">
+          <div class="row">
+            <div class="col-5">
+                <img src="{{user.profile_image.url }}" class="img-fluid rounded">
+            </div>
+            <div class="col-7 py-3 px-1">
+              <h5 class="fw-bold">
+                <a class="text-decoration-none text-dark" href="{%url 'users:detail' user.id%}">{{user.name}}</a>
+              </h5>
+              <span class="text-secondary">{{user.school}}</span><br>
+              {% for subjects in user.subjects.all %}
+                <span class="badge bg-{{subjects.color}}">{{subjects}}</span>
+              {% endfor %}
+            </div>
+>>>>>>> a94ea9c4a1c6129be25e12d63c19d61858513c6d
           </div>
+          <hr>
+          日報だしたい | 授業中かどうかとか？
+          <hr>
+          簡単な成績出したい
         </div>
-    </div>
-    {% endfor %}
       </div>
-  {% else %}
-    <p>No Users</p>
-  {% endif %}
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No Users</p>
+{% endif %}

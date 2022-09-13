@@ -1,44 +1,47 @@
 {% extends "base.html"%}
-{% block title %}ユーザー一覧{% endblock %}
+{% block title %}ユーザー詳細{% endblock %}
 
 {% block content %}
-<div class="card mx-3 my-2">
-  <div class="container  border-bottom pb-4 pt-4 " >
-    {% if user.profile_image %}
-      <div class="user_image flex ">
-        <a class="nav-item"><img src="{{ user.profile_image.url }}" alt="ユーザー画面" class="img-thumbnail d-inline-block float-start me-3" width="20%" height="10%"></a>
+<div class="container bg-light rounded-3 my-4 py-4 shadow-lg" >
+  <div class="container bg-light border-bottom px-4" >
+    <div class="row">
+      <div class="col-4 p-4">
+        {% if user.profile_image %}
+          <img src="{{ user.profile_image.url }}" class="img-fluid rounded">
+        {% endif %}
       </div>
-    {% endif %}
-    <h2 class="fw-bold">{{user.name}}
-      {% if user.job == "student" %}
-        <span class="badge bg-success ">生徒</span>
-      {% else %}
-        <span class="badge bg-primary">講師</span>
-      {% endif %}
-    </h2>
-    <h5 class="text-muted fw-normal">{{user.school}}/{{user.birth}}</h5>
+      <div class="col-8 p-4">
+        <h2 class="fw-bold">{{user.name}}
+          {% if user.job == "student" %}
+            <span class="badge bg-success ">生徒</span>
+          {% else %}
+            <span class="badge bg-primary">講師</span>
+          {% endif %}
+        </h2>
+        <h5 class="text-muted fw-normal">{{user.school}}/{{user.birth}}</h5>
 
-    {% if user.job == "student" %}
-      <h4 class = "pt-3">受講科目</h4>
-    {% else %}
-      <h4 class = "pt-3">担当教科</h4>
-    {% endif %}
+        {% if user.job == "student" %}
+          <p class="fs-4 text-secondary">受講科目</p>
+        {% else %}
+          <p class="fs-4 text-secondary">担当教科</p>
+        {% endif %}
 
-    {% for subjects in user.subjects.all %}
-      <span class="badge bg-{{subjects.color}}">{{subjects}}</span>
-    {% endfor %}
-
+        {% for subjects in user.subjects.all %}
+          <span class="fs-5 badge bg-{{subjects.color}}">{{subjects}}</span>
+        {% endfor %}
+      </div>
+    </div>
   </div>
-    {% if user.job == "student" %}
-      <div class="container  border-bottom pb-4 my-4" >
-        <h2 class = "pb-3">日報</h2>
-        {% include "diaries/list.html" %}
-      </div>
-      <div class="container pb-4" >
-        <h2 class = "pb-3">成績</h2>
-        <a href="{% url 'users:records_detail'  user.id %}">成績一覧へ</a>
-      </div>
-    {% else %}
-    {% endif %}
+  {% if user.job == "student" %}
+    <div class="container  border-bottom pb-4 my-4" >
+      <h2 class = "pb-3">日報</h2>
+      {% include "diaries/list.html" %}
+    </div>
+    <div class="container pb-4" >
+      <h2 class = "pb-3">成績</h2>
+      <a href="{% url 'users:records_detail'  user.id %}">成績一覧へ</a>
+    </div>
+  {% else %}
+  {% endif %}
 {% endblock %}
 
