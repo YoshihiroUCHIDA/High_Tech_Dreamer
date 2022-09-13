@@ -5,6 +5,7 @@ from users.models import CustomUser
 from .forms import DiaryForm
 from django.views.decorators.http import require_POST
 
+
 # --------------------------------------------------
 # 日報リストの表示
 def index(request):
@@ -34,10 +35,11 @@ def create(request):
 
     # 現在の講師ユーザの情報を取得
     teacher = CustomUser.objects.get(id=request.user.id)
-    
+    diary_form = DiaryForm(initial={'teacher': teacher})
+
     # 初期値の設定
     params = {
-        'form': DiaryForm(initial={'teacher': teacher}),
+        'form': diary_form,
     }
     return render(request, 'diaries/create.html', params)
 
