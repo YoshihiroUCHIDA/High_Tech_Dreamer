@@ -20,7 +20,7 @@ def index(request):
 
 def detail(request, user_id):
     user = CustomUser.objects.get(pk=user_id)
-    diaries = Diary.objects.filter(student_id=user.id)
+    diaries = Diary.objects.filter(student = user)
     today = datetime.date.today()
     birthday = user.birthday
     grade=ConvertToGrade(today, birthday)
@@ -30,6 +30,7 @@ def detail(request, user_id):
         'user_grade':grade,
         'diaries_list': diaries,
     }
+
     return render(request, 'users/detail.html', params)
 
 
