@@ -8,6 +8,8 @@
       <div class="col-4 p-4">
         {% if user.profile_image %}
           <img src="{{ user.profile_image.url }}" class="img-fluid rounded">
+        {% else %}
+          <img src="../../../media/default/DefaultImage.png" class="img-fluid rounded">
         {% endif %}
       </div>
       <div class="col-8 p-4">
