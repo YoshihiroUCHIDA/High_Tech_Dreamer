@@ -3,8 +3,11 @@
 
 {% block content %}
 <div class="container my-4 py-3 bg-light rounded-3">
-  <h3 class="fw-bold ">日報</h3>
+  <h2 class="fw-bold">
+    <i class="fas fa-book-open" style="color: #6C757D;"></i>
+    <span>日報リスト</span>
+  </h2>
   {% include "diaries/list.html" %}
 </div>
-  {% include "diaries/create_btn.html" %}
+{% include "diaries/create_btn.html" %}
 {% endblock %}

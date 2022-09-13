@@ -1,21 +1,27 @@
 {% extends "base.html"%}
 {% load static %}
-{% block title %}テスト結果一覧{% endblock %}
+{% block title %}成績一覧{% endblock %}
 
 {% block content %}
 <div class="container my-4 py-3 bg-white rounded-3">
-  <h1 class="fw-bold">テスト</h1>
+  <h2 class="fw-bold">
+    <i class="fas fa-chart-column" style="color: #6C757D;"></i>
+    <span>成績</span>
+  </h2>
   <hr>
+
   <div class="container my-4 p-4 bg-light">
     <h3 class="">定期テスト</h2>
-    <canvas id="teiki-chart"></canvas>
+      <canvas id="teiki-chart"></canvas>
   </div>
   <hr>
+
   <div class="container my-4 py-3 bg-light">
     <h3 class="">模試</h2>
-    <canvas id="moshi-chart"></canvas>
+      <canvas id="moshi-chart"></canvas>
   </div>
   <hr>
+  
   <div class="container">
     <div class="row align-items-start">
       <div class="col">
@@ -23,7 +29,8 @@
         <ul class="list-group list-group-flush">
           {% for record in records_teiki %}
           <li class="list-group-item">
-            <a class="text-decoration-none fw-bold" href="{% url 'records:detail' record.id %}">{{record.name}}</a> - {{record.date|date:"n月j日 (D)"}}
+            <a class="text-decoration-none fw-bold" href="{% url 'records:detail' record.id %}">{{record.name}}</a> -
+            {{record.date|date:"n月j日 (D)"}}
           </li>
           {% endfor %}
         </ul>
@@ -33,7 +40,8 @@
         <ul class="list-group list-group-flush">
           {% for record in records_moshi %}
           <li class="list-group-item">
-            <a class="text-decoration-none fw-bold" href="{% url 'records:detail' record.id %}">{{record.name}}</a> - {{record.date|date:"n月j日 (D)"}}
+            <a class="text-decoration-none fw-bold" href="{% url 'records:detail' record.id %}">{{ record.name }}</a> -
+            {{ record.date|date:"n月j日 (D)" }}
           </li>
           {% endfor %}
         </ul>
@@ -43,13 +51,12 @@
 </div>
 <script src="{% static 'chart.js' %}"></script>
 <script>
-  var records_teiki = {{records_teiki_json|safe}}
-  var records_moshi = {{records_moshi_json|safe}}
+  var records_teiki = {{ records_teiki_json| safe }}
+  var records_moshi = {{ records_moshi_json| safe }}
   console.log('hello')
   const teiki_chart = makeChart(records_teiki, 'teiki-chart')
   const moshi_chart = makeChart(records_moshi, 'moshi-chart')
   console.log('hello')
 </script>
-  
 
 {% endblock %}
