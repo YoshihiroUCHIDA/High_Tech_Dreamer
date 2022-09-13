@@ -46,8 +46,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     job = models.CharField(_("講師or生徒"), max_length=20, choices=(('teacher','講師'),('student','生徒'),('manager','管理者')))
     profile_image = models.ImageField(null=True, blank=True)
 
-    following = models.ManyToManyField("self",related_name="followed_by",blank=True)
-
     juku = models.ForeignKey(Juku, on_delete=models.CASCADE,null=True)
     subjects = models.ManyToManyField(Subject,null=True)
 
@@ -63,6 +61,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.name
 
+    #フォロー人数を表示するfollow関数を定義
+    def follow_nums(self):
+       return len(Follow.objects.filter(owner=self.id))
+    #フォロワー人数を表示するfollower_nums関数を定義
+    def follower_nums(self):
+       return len(Follow.objects.filter(follow_target=self.id))
+
     class Meta:
         verbose_name = _("user")
         verbose_name_plural = _("users")
@@ -73,3 +78,16 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+
+class Follow(models.Model):
+    owner = models.ForeignKey(
+       CustomUser,
+       on_delete=models.CASCADE,
+       related_name = 'do_follow_user'
+   )
+    follow_target = models.ForeignKey(
+       CustomUser,
+       on_delete=models.CASCADE,
+       related_name = 'accept_follow_user'
+   )
