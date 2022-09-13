@@ -11,7 +11,7 @@
 		<div class="card-header">
 			<h4>
 				{{ diary.date|date:"n月j日 (D)" }}
-				<span class="badge bg-{{diary.subject_id.color}}"> {{ diary.subject_id }}</span>
+				<span class="badge bg-{{diary.subject.color}}"> {{ diary.subject }}</span>
 			</h4>
 			<!--編集・削除ボタン (右寄せ)-->
 			<div class="d-flex justify-content-end">
@@ -43,11 +43,11 @@
 			<h5>
 				<p>
 					<span class="badge bg-secondary">生徒</span>
-					{{ diary.student_id }}
+					{{ diary.student }}
 				</p>
 				<p>
 					<span class="badge bg-secondary">講師</span>
-					{{ diary.teacher_id }}
+					{{ diary.teacher }}
 				</p>
 			</h5>
 			<hr>
