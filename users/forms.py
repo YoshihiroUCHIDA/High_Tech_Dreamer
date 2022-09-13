@@ -16,7 +16,7 @@ class LoginForm(auth_forms.AuthenticationForm):
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = {'email', "name", "school", "birthday", 'job', 'juku'}
+        fields = {'email', "name", "school", "birthday", 'job', 'juku','bio','profile_image','subjects'}
         widgets = {
             'birthday': forms.SelectDateWidget
         }
