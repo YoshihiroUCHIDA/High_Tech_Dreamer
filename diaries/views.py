@@ -4,7 +4,6 @@ from diaries.models import Diary
 from users.models import CustomUser
 from .forms import DiaryForm
 from django.views.decorators.http import require_POST
-from django.contrib.auth.models import User
 
 # --------------------------------------------------
 # 日報リストの表示
@@ -27,20 +26,19 @@ def detail(request, diary_id):
 # --------------------------------------------------
 # 日報の作成
 def create(request):
+    # Submit の処理
     if (request.method == 'POST'):
         diary = DiaryForm(request.POST)
         diary.save()
         return redirect(to='/diaries')
 
-    data = CustomUser.objects.get(id=request.user.id)
-    if (data.job == 'teacher'):
-        params = {
-            'form': DiaryForm(initial={'teacher_id': data}),
-        }
-    else:
-        params = {
-            'form': DiaryForm(),
-        }
+    # 現在の講師ユーザの情報を取得
+    teacher = CustomUser.objects.get(id=request.user.id)
+    
+    # 初期値の設定
+    params = {
+        'form': DiaryForm(initial={'teacher_id': teacher}),
+    }
     return render(request, 'diaries/create.html', params)
 
 # --------------------------------------------------
