@@ -46,6 +46,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     job = models.CharField(_("講師or生徒"), max_length=20, choices=(('teacher','講師'),('student','生徒'),('manager','管理者')))
     profile_image = models.ImageField(null=True, blank=True)
 
+    following = models.ManyToManyField("self",related_name="followed_by",blank=True)
+
     juku = models.ForeignKey(Juku, on_delete=models.CASCADE,null=True)
     subjects = models.ManyToManyField(Subject,null=True)
 
