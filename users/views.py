@@ -17,7 +17,7 @@ def index(request):
 
 def detail(request, user_id):
     user = CustomUser.objects.get(pk=user_id)
-    diaries = Diary.objects.filter(student_id=user.id)
+    diaries = Diary.objects.filter(student = user)
     params = { 
             'user': user,
             'diaries_list' : diaries,
