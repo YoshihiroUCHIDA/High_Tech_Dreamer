@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from django.contrib.auth.decorators import login_required
 from .models import Juku
 from users.models import CustomUser
 from users.models import Follow
 from diaries.models import Diary
 
+@login_required
 def dashboard(request):
     user = request.user
     following = Follow.objects.filter(owner=user)
