@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from users.models import CustomUser
+from .models import Lesson
 
 def index(request):
-    diary = Diary.objects.all().order_by("date").reverse()
+    lessons = Lesson.objects.all().order_by("date").reverse()
     params = {
-        'diaries_list': diary,
+        'lessons': lessons,
     }
-    return render(request, 'diaries/index.html', params)
+    return render(request, 'lessons/index.html', params)
 
 def create(request):
     if (request.method == 'POST'):
@@ -19,11 +20,11 @@ def create(request):
     params = {
         'form': DiaryForm(initial={'teacher_id': teacher}),
     }
-    return render(request, 'diaries/create.html', params)
+    return render(request, 'lessons/create.html', params)
 
 def detail(request, diary_id):
     diary = Diary.objects.get(pk=diary_id)
     params = {
         'diary': diary,
     }
-    return render(request, 'diaries/detail.html', params)
+    return render(request, 'lessons/detail.html', params)
