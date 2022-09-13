@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -70,6 +71,19 @@ def ConvertToGrade(today, birthday):
         grade="高校3年生"
 
     return grade
+
+def edit(request,user_id):
+    obj=CustomUser.objects.get(id=user_id)
+
+    if(request.method=='POST'):
+        user=forms.CustomUserCreationForm(request.POST,instance=obj)
+        user.save()
+        return redirect(to='/users')
+    params={
+        'id':user_id,
+        'form':forms.CustomUserCreationForm(instance=obj)
+    }
+    return render(request,'users/edit.html',params)
 
 
 class MyLoginView(LoginView):
