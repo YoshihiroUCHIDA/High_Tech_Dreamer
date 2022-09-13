@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container my-4 py-3 bg-light rounded-3">
-  <h1 class="dispay-6">日報の作成</h1>
+  <h1 class="display-6">日報の作成</h1>
 
   <form action="{% url 'diaries:create' %}" method="post">
     {% csrf_token %}
@@ -12,8 +12,19 @@
     {{ form.non_field_errors }}
     {% for item in form %}
     <div class="form-group mb-3">
+      
+      <!--講師の選択フィールドの未表示-->
+      {% if item.label == "Teacher id" %}
+      <div style="display: none;">
+        <label class="mb-1">{{ item.label }}</label>
+        {{ item }}
+      </div>
+      <!--そのほかの入力フィールド-->
+      {% else %}
       <label class="mb-1">{{ item.label }}</label>
       {{ item }}
+      {% endif %}
+      
       {% if field.help_text %}
       <span class="helptext">{{ field.help_text }}</span>
       {% endif %}
