@@ -105,6 +105,3 @@ class MyLoginView(LoginView):
 
 class MyLogoutView(LoginRequiredMixin, LogoutView):
     template_name = "users/logout.html"
-
-# class IndexView(TemplateView):
-#    template_name = "users/detail.html"
