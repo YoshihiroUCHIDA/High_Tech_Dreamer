@@ -27,8 +27,8 @@ def detail(request, user_id):
 
     params = {
         'user': user,
-        'user_grade':grade,
         'diaries_list': diaries,
+        'user_grade':grade,
     }
     return render(request, 'users/detail.html', params)
 
