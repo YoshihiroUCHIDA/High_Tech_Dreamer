@@ -8,7 +8,11 @@
 
       <div class="container bg-light rounded-3 py-3 shadow-lg">
         <div class="container my-3 px-3">
+          {% if user.profile_image %}
           <img src="{{ user.profile_image.url }}" class="img-fluid rounded">
+          {% else %}
+          <img src="../../../media/default/DefaultImage.png" class="img-fluid rounded">
+          {% endif %}
         </div>
 
         <div class="container">
