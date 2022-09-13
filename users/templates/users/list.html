@@ -1,41 +1,43 @@
 {% if users_list %}
-  <div class="d-flex flex-row bd-highlight mb-3 flex-wrap">
-      {% for user in users_list %}
-        <div class="p-2 bd-highlight w-25">
-          <div class="container rounded-3 border bg-white py-2">
-            <div class="row">
+<div class="d-flex flex-row bd-highlight mb-3 flex-wrap">
+  {% for user in users_list %}
+  <div class="p-2 bd-highlight w-25">
+    <div class="container rounded-3 border bg-white py-2">
+      <div class="row">
 
-              <div class="col-5">
-                {% if user.profile_image %}
-                  <img src="{{user.profile_image.url }}" class="img-fluid rounded">
-                {% else %}
-                  <img src="../../../media/default/DefaultImage.png" class="img-fluid rounded">
-                {% endif %}
-              </div>
-
-              <div class="col-7 py-3 px-1">
-                <h5 class="fw-bold">
-                  <a class="text-decoration-none text-dark" href="{% url 'users:detail' user.id %}">
-                    <i class="fas fa-user" style="color: #6C757D;"></i>
-                    <span>{{ user.name }}</span>
-                  </a>
-                </h5>
-                <span class="text-secondary">{{user.school}}</span><br>
-                {% for subjects in user.subjects.all %}
-                  <span class="badge bg-{{subjects.color}}">{{subjects}}</span>
-                {% endfor %}
-              </div>
-
-            </div>
-            <a class="" href="users/follow/12/" class="">フォロー</a>
-            <hr>
-            日報だしたい | 授業中かどうかとか？
-            <hr>
-            簡単な成績出したい
-          </div>
+        <div class="col-5">
+          {% if user.profile_image %}
+          <img src="{{user.profile_image.url }}" class="img-fluid rounded">
+          {% else %}
+          <img src="../../../media/default/DefaultImage.png" class="img-fluid rounded">
+          {% endif %}
         </div>
-      {% endfor %}
+
+        <div class="col-7 py-3 px-1">
+          <h5 class="fw-bold">
+            <a class="text-decoration-none text-dark" href="{% url 'users:detail' user.id %}">
+              <i class="fas fa-user" style="color: #6C757D;"></i>
+              <span>{{ user.name }}</span>
+            </a>
+          </h5>
+          <i class="fas fa-school" style="color: #6C757D;"></i>
+          <span class="text-secondary">{{ user.school }}</span>
+          <br>
+          {% for subjects in user.subjects.all %}
+          <span class="badge bg-{{subjects.color}}">{{subjects}}</span>
+          {% endfor %}
+        </div>
+
+      </div>
+      <a href="users/follow/12/" class="">フォロー</a>
+      <hr>
+      日報だしたい | 授業中かどうかとか？
+      <hr>
+      簡単な成績出したい
+    </div>
   </div>
+  {% endfor %}
+</div>
 {% else %}
-  <p>No Users</p>
+<p>No Users</p>
 {% endif %}
