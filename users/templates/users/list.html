@@ -1,5 +1,29 @@
 {% if users_list %}
   <div class="d-flex flex-row bd-highlight mb-3 flex-wrap">
+<<<<<<< HEAD
+      {% for user in users_list %}
+        <div class="p-2 bd-highlight w-25">
+          <div class="container rounded-3 border bg-white py-2">
+            <div class="row">
+              <div class="col-5">
+                  <img src="{{user.profile_image.url }}" class="img-fluid rounded">
+              </div>
+              <div class="col-7 py-3 px-1">
+                <h5 class="fw-bold">
+                  <a class="text-decoration-none text-dark" href="{%url 'users:detail' user.id%}">{{user.name}}</a>
+                </h5>
+                <span class="text-secondary">{{user.school}}</span><br>
+                {% for subjects in user.subjects.all %}
+                  <span class="badge bg-{{subjects.color}}">{{subjects}}</span>
+                {% endfor %}
+              </div>
+            </div>
+            <a href="users/follow/12/" class="">フォロー</a>
+            <hr>
+            日報だしたい | 授業中かどうかとか？
+            <hr>
+            簡単な成績出したい
+=======
     {% for user in users_list %}
       <div class="p-2 bd-highlight w-25">
         <div class="container rounded-3 border bg-white py-2">
@@ -29,15 +53,16 @@
               {% endfor %}
             </div>
             
+>>>>>>> 9e5a342393454fcc47c3d4e0c7dba6a7d64c272f
           </div>
-          <hr>
-          日報だしたい | 授業中かどうかとか？
-          <hr>
-          簡単な成績出したい
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
   </div>
 {% else %}
   <p>No Users</p>
+<<<<<<< HEAD
 {% endif %}
+
+=======
+{% endif %}
+>>>>>>> 9e5a342393454fcc47c3d4e0c7dba6a7d64c272f
