@@ -82,7 +82,11 @@
         </h2>
         {% include "diaries/list.html" %}
       </div>
-      {% include "diaries/create_btn.html" %}
+      {% if user.job == "student" %}
+        {% include "lessons/create_btn.html" %}
+      {% else %}
+        {% include "diaries/create_btn.html" %}
+      {% endif %}
     </div>
   </div>
 </div>
