@@ -8,6 +8,7 @@ urlpatterns = [
     path('<int:user_id>/',views.detail, name='detail'),
     path('<int:user_id>/records/',records_views.index, name='records_detail'),
     path('<int:user_id>/follow/',views.follow, name="follow"),
+    path('<int:user_id>/following/',views.index, name="following"),
     path('login/', views.MyLoginView.as_view(), name="login"),
     path('logout/', views.MyLogoutView.as_view(), name="logout"),
     path('index/',views.index, name="index"),

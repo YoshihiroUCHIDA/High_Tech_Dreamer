@@ -31,6 +31,7 @@
           <li class="list-group-item">
             <a class="text-decoration-none fw-bold" href="{% url 'records:detail' record.id %}">{{record.name}}</a> -
             {{record.date|date:"n月j日 (D)"}}
+            </p class="text-center">平均 {{ record.avg}} 点</p>
           </li>
           {% endfor %}
         </ul>
@@ -42,6 +43,7 @@
           <li class="list-group-item">
             <a class="text-decoration-none fw-bold" href="{% url 'records:detail' record.id %}">{{ record.name }}</a> -
             {{ record.date|date:"n月j日 (D)" }}
+            <span>平均 {{ record.avg }} 点</span>
           </li>
           {% endfor %}
         </ul>
@@ -49,6 +51,7 @@
     </div>
   </div>
 </div>
+
 <script src="{% static 'chart.js' %}"></script>
 <script>
   var records_teiki = {{ records_teiki_json| safe }}

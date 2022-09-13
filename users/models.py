@@ -1,10 +1,13 @@
+import datetime
+
 from django.db import models
+from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
-from django.core.mail import send_mail
-from django.utils import timezone
 from django.contrib.auth.validators import UnicodeUsernameValidator
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+
 from jukus.models import Juku
 from subjects.models import Subject
 
@@ -76,8 +79,57 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         super().clean()
         self.email = self.__class__.objects.normalize_email(self.email)
 
+
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+
+    def count_following(self):
+        following = Follow.objects.filter(owner=self)
+        following_list = []
+        for f in following:
+            following_list.append(f.follow_target)
+
+        return len(following_list)
+
+
+    def grade(self):
+        birth_y = self.birthday.year
+        birth_m = self.birthday.month
+        today_y = datetime.date.today().year
+
+        if birth_m < 4:
+            g = today_y - birth_y
+        else:           #遅生まれ
+            g = today_y - birth_y - 1
+
+        grade = "999"
+        if g == 6:
+            grade = "小学1年生"
+        elif g == 7:
+            grade = "小学2年生"
+        elif g == 8:
+          grade = "小学3年生"
+        elif g == 9:
+            grade = "小学4年生"
+        elif g == 10:
+            grade = "小学5年生"
+        elif g == 11:
+            grade = "小学6年生"
+        elif g == 12:
+            grade = "中学1年生"
+        elif g == 13:
+            grade = "中学2年生"
+        elif g == 14:
+            grade = "中学3年生"
+        elif g == 15:
+            grade = "高校1年生"
+        elif g == 16:
+            grade = "高校2年生"
+        elif g == 17:
+            grade = "高校3年生"
+
+        return grade
 
 
 class Follow(models.Model):

@@ -6,11 +6,6 @@ from django.utils import timezone
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils.translation import gettext_lazy as _
 from users.models import CustomUser
-# class Student(models.Model):
-#     name = models.CharField(_("生徒名"), max_length=50)
-
-# class CustomUser(models.Model):
-#     name = models.CharField(_("氏名"), max_length=50)
 
 class Record(models.Model):
     name = models.CharField(_("テスト名"), max_length=50)
@@ -39,6 +34,14 @@ class Record(models.Model):
     diviation_english  = models.FloatField(_("英語の偏差値"))
     diviation_sience   = models.FloatField(_("理科の偏差値"))
     diviation_social   = models.FloatField(_("社会の偏差値"))
+
+    def avg(self):
+        avg = (self.score_japanese + self.score_math + self.score_english + self.score_sience + self.score_social) / 5
+        return avg
+
+    def sum(self):
+        sum = (self.score_japanese + self.score_math + self.score_english + self.score_sience + self.score_social)
+        return sum
 
     def __str__(self):
         return self.name
