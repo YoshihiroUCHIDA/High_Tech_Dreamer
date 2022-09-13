@@ -1,27 +1,6 @@
 {% if users_list %}
   <div class="d-flex flex-row bd-highlight mb-3 flex-wrap">
     {% for user in users_list %}
-<<<<<<< HEAD
-    <div class="p-2 bd-highlight w-25">
-        <div class="card ">
-          <div class="card-header">
-            {% if user.job == "student" %}
-              担当生徒
-            {% else %}
-              講師
-            {% endif %}
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">{{user.name}}</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="/users/{{user.id}}" class="btn btn-outline-primary">
-              {% if user.job == "student" %}
-                生徒詳細
-              {% else %}
-                講師詳細
-              {% endif %}
-            </a>
-=======
       <div class="p-2 bd-highlight w-25">
         <div class="container rounded-3 border bg-white py-2">
           <div class="row">
@@ -37,7 +16,6 @@
                 <span class="badge bg-{{subjects.color}}">{{subjects}}</span>
               {% endfor %}
             </div>
->>>>>>> a94ea9c4a1c6129be25e12d63c19d61858513c6d
           </div>
           <hr>
           日報だしたい | 授業中かどうかとか？
