@@ -9,5 +9,12 @@
   </h2>
   {% include "diaries/list.html" %}
 </div>
+
+<!--生徒の場合は出席ボタン-->
+{% if user.job == "student" %}
+{% include "lessons/create_btn.html" %}
+<!--講師の場合は日報作成ボタン-->
+{% else %}
 {% include "diaries/create_btn.html" %}
+{% endif %}
 {% endblock %}

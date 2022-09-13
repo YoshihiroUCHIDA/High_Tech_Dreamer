@@ -19,6 +19,8 @@
         <span>{{ diary.date|date:"n月j日 (D)" }}</span>
         <span class="badge bg-{{ diary.subject.color }}"> {{ diary.subject }}</span>
       </h4>
+
+      {% if user.job == "teacher" %}
       <!--編集・削除ボタン (右寄せ)-->
       <div class="d-flex justify-content-end">
         <!--横一列-->
@@ -40,6 +42,7 @@
           </div>
         </div>
       </div>
+      {% endif %}
     </div>
 
     <!--中身-->
@@ -51,7 +54,7 @@
         </p>
         <p>
           <i class="fas fa-user-tie" style="color: #6C757D;"></i>
-          {{ diary.teacher }}
+          <span>{{ diary.teacher }}</span>
         </p>
       </h5>
       <hr>

@@ -16,7 +16,14 @@
         </div>
 
         <div class="container">
-          <h2 class="fw-bold">{{ user.name }}</h2>
+          <h2 class="fw-bold">
+            {% if user.job == "student" %}
+            <i class="fas fa-user" style="color: #6C757D;"></i>
+            {% else %}
+            <i class="fas fa-user-tie" style="color: #6C757D;"></i>
+            {% endif %}
+            <span>{{ user.name }}</span>
+          </h2>
         </div>
 
         <div class="container">
@@ -33,7 +40,7 @@
           {% endif %}
 
           {% for subjects in user.subjects.all %}
-          <span class="badge bg-{{subjects.color}}">{{subjects}}</span>
+          <span class="badge bg-{{ subjects.color }}">{{ subjects }}</span>
           {% endfor %}
         </div>
 
@@ -60,22 +67,25 @@
       <div class="container bg-light rounded-3 py-3 shadow-lg">
         <h2 class="fw-bold">
           <i class="fas fa-bullhorn" style="color: #6C757D;"></i>
-          <span>お知らせ</span>
+          <span>{{ user.juku }}からのお知らせ</span>
         </h2>
         <div class="alert alert-success" role="alert">
           {{ juku.news }}
         </div>
       </div>
 
+      <!--講師ユーザの場合のみ表示-->
+      {% if user.job == "teacher" %}
       <div class="container my-4 py-3 bg-light rounded-3">
         <h2 class="fw-bold">
           <a class="text-decoration-none text-success" href="{% url 'users:index' %}">
             <i class="fas fa-users"></i>
-            <span>担当生徒</span>
+            <span>{{ user.juku }}の生徒</span>
           </a>
         </h2>
         {% include "users/list.html" %}
       </div>
+      {% endif %}
 
       <div class="container my-4 py-3 bg-light rounded-3 shadow-lg">
         <h2 class="fw-bold">
@@ -86,13 +96,15 @@
         </h2>
         {% include "diaries/list.html" %}
       </div>
+
+      <!--生徒の場合は出席ボタン-->
       {% if user.job == "student" %}
-        {% include "lessons/create_btn.html" %}
+      {% include "lessons/create_btn.html" %}
+      <!--講師の場合は日報作成ボタン-->
       {% else %}
-        {% include "diaries/create_btn.html" %}
+      {% include "diaries/create_btn.html" %}
       {% endif %}
     </div>
   </div>
 </div>
 {% endblock %}
-
