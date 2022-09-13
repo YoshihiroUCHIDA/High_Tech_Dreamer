@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}プロフィールの編集{% endblock %}
+
+{% block content %}
+<div class="container my-4 py-3 bg-light rounded-3">
+  <h1 class="display-6">プロフィールの編集</h1>
+
+  <form action="{% url 'users:edit' id %}" method="post">
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+    {% for item in form %}
+    <div class="form-group mb-3">
+      <div>
+        <label class="mb-1">{{ item.label }}</label>
+        {{ item }}
+      </div>
+      {% if field.help_text %}
+      <span class="helptext">{{ field.help_text }}</span>
+      {% endif %}
+      {{ field.errors }}
+    </div>
+    {% endfor %}
+
+    <div class="text-end">
+      <button type="submit" class="btn btn-primary">適用</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
