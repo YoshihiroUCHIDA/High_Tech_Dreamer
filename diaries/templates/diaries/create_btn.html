@@ -1,11 +1,7 @@
-<style>
-  .fixed_btn
-  {
-    position: fixed;
-    bottom: 20px; 
-    right: 20px;
-    padding: 6px 40px;
-    opacity: 1;
-  }
-</style>
-<a class="btn btn-primary fixed_btn shadow-lg" href="{% url 'diaries:create' %}">日報の作成</a>
+<div class="container fixed-bottom mb-3 text-end">
+  <a class="btn btn-primary shadow-lg btn-lg" href="{% url 'diaries:create' %}">
+    <h3>
+      日報の作成
+    </h3>
+  </a>
+</div>
