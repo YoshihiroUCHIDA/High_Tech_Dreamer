@@ -19,14 +19,6 @@ def index(request):
     params = {'users_list': users,}
     return render(request, 'users/index.html', params)
 
-<<<<<<< HEAD
-def teacher_index(request):
-    users = CustomUser.objects.filter(job="teacher")
-    params = { 'users_list': users,}
-    return render(request, 'users/teacher_index.html', params)
-=======
->>>>>>> 9e5a342393454fcc47c3d4e0c7dba6a7d64c272f
-
 def detail(request, user_id):
     user = CustomUser.objects.get(pk=user_id)
     diaries = Diary.objects.filter(student = user)
@@ -41,15 +33,6 @@ def detail(request, user_id):
     }
 
     return render(request, 'users/detail.html', params)
-
-<<<<<<< HEAD
-def follow(request, user_id):
-    #kwargs['username'] = フォロー対象のユーザー名を渡す。
-    following = CustomUser.objects.get(pk=user_id)
-    Follow.objects.get_or_create(owner=request.user,  follow_target=following)
-    response = redirect('')
-    return render(request, 'jukus/dashboard.html')
-=======
 
 def ConvertToGrade(today, birthday):
     a = "0401"
@@ -88,7 +71,6 @@ def ConvertToGrade(today, birthday):
 
     return grade
 
->>>>>>> 9e5a342393454fcc47c3d4e0c7dba6a7d64c272f
 
 class MyLoginView(LoginView):
     form_class = forms.LoginForm
