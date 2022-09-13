@@ -1,47 +1,63 @@
 {% extends "base.html"%}
-{% block title %}ユーザー詳細{% endblock %}
+{% block title %}{{ user.name }} の詳細{% endblock %}
 
 {% block content %}
-<div class="container bg-light rounded-3 my-4 py-4 shadow-lg" >
-  <div class="container bg-light border-bottom px-4" >
+<div class="container bg-light rounded-3 my-4 py-4 shadow-lg">
+  <div class="container bg-light border-bottom px-4">
     <div class="row">
       <div class="col-4 p-4">
         {% if user.profile_image %}
           <img src="{{ user.profile_image.url }}" class="img-fluid rounded">
+        {% else %}
+          <img src="../../../media/default/DefaultImage.png" class="img-fluid rounded">
         {% endif %}
       </div>
+
       <div class="col-8 p-4">
-        <h2 class="fw-bold">{{user.name}}
+        <h1 class="fw-bold">
           {% if user.job == "student" %}
-            <span class="badge bg-success ">生徒</span>
+          <i class="fas fa-user" style="color: #6C757D;"></i>
           {% else %}
-            <span class="badge bg-primary">講師</span>
+          <i class="fas fa-user-tie" style="color: #6C757D;"></i>
           {% endif %}
-        </h2>
-        <h5 class="text-muted fw-normal">{{user.school}}/{{user.birth}}</h5>
+          <span>{{ user.name }}</span>
+        </h1>
+        <h5 class="text-muted fw-normal">
+          {{ user_grade }}
+        </h5>
+        <h5 class="text-muted fw-normal">
+          <i class="fas fa-school" style="color: #6C757D;"></i>
+          <span>{{ user.school }}</span>
+        </h5>
 
         {% if user.job == "student" %}
-          <p class="fs-4 text-secondary">受講科目</p>
+        <p class="fs-4 text-secondary">受講科目</p>
         {% else %}
-          <p class="fs-4 text-secondary">担当教科</p>
+        <p class="fs-4 text-secondary">担当教科</p>
         {% endif %}
 
         {% for subjects in user.subjects.all %}
-          <span class="fs-5 badge bg-{{subjects.color}}">{{subjects}}</span>
+        <span class="fs-5 badge bg-{{ subjects.color }}">{{subjects}}</span>
         {% endfor %}
       </div>
     </div>
   </div>
+
   {% if user.job == "student" %}
-    <div class="container  border-bottom pb-4 my-4" >
-      <h2 class = "pb-3">日報</h2>
-      {% include "diaries/list.html" %}
-    </div>
-    <div class="container pb-4" >
-      <h2 class = "pb-3">成績</h2>
-      <a href="{% url 'users:records_detail'  user.id %}">成績一覧へ</a>
-    </div>
+  <div class="container  border-bottom pb-4 my-4">
+    <h2 class="pb-3">
+      <i class="fas fa-book-open" style="color: #6C757D;"></i>
+      <span>日報</span>
+    </h2>
+    {% include "diaries/list.html" %}
+  </div>
+  <div class="container pb-4">
+    <h2 class="pb-3">
+      <i class="fas fa-chart-column" style="color: #6C757D;"></i>
+      <span>成績</span>
+    </h2>
+    <a href="{% url 'users:records_detail'  user.id %}">成績一覧へ</a>
+  </div>
   {% else %}
   {% endif %}
-{% endblock %}
-
+  {% endblock %}

@@ -1,72 +1,88 @@
 {% extends "base.html" %}
 
 {% block title %}
-{{ diary.date|date:"n月j日 (D)" }} の日報
+{{ diary.date|date:"n月j日 (D)" }} の日報詳細
 {% endblock %}
 
 {% block content %}
 <div class="container my-4 py-3 bg-light rounded-3">
-	<div class="card">
-		<!--ヘッダ-->
-		<div class="card-header">
-			<h4>
-				{{ diary.date|date:"n月j日 (D)" }}
-				<span class="badge bg-{{diary.subject_id.color}}"> {{ diary.subject_id }}</span>
-			</h4>
-			<!--編集・削除ボタン (右寄せ)-->
-			<div class="d-flex justify-content-end">
-				<!--横一列-->
-				<div class="row g-2">
-					<!--編集-->
-					<div class="col-auto">
-						<a class="btn btn-outline-primary btn-sm" href="{% url 'diaries:edit' diary.id %}"
-							role="button">
-							<i class="fa-solid fa-pen"></i>
-						</a>
-					</div>
-					<!--削除-->
-					<div class="col-auto">
-						<form method="post" action="{% url 'diaries:delete' diary.id %}">
-							{% csrf_token %}
-							<button class="btn btn-outline-danger btn-sm" type="submit"
-								onclick='return confirm("日報を削除してよろしいですか？");'>
-								<i class="fa-solid fa-trash"></i>
-							</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
+  <h2 class="fw-bold">
+    <i class="fas fa-book-open" style="color: #6C757D;"></i>
+    <span>日報詳細</span>
+  </h2>
 
-		<!--中身-->
-		<div class="card-body">
-			<h5>
-				<p>
-					<span class="badge bg-secondary">生徒</span>
-					{{ diary.student_id }}
-				</p>
-				<p>
-					<span class="badge bg-secondary">講師</span>
-					{{ diary.teacher_id }}
-				</p>
-			</h5>
-			<hr>
+  <div class="card">
+    <!--ヘッダ-->
+    <div class="card-header">
+      <h4>
+        <i class="fas fa-calendar-days" style="color: #6C757D;"></i>
+        <span>{{ diary.date|date:"n月j日 (D)" }}</span>
+        <span class="badge bg-{{ diary.subject.color }}"> {{ diary.subject }}</span>
+      </h4>
+      <!--編集・削除ボタン (右寄せ)-->
+      <div class="d-flex justify-content-end">
+        <!--横一列-->
+        <div class="row g-2">
+          <!--編集-->
+          <div class="col-auto">
+            <a class="btn btn-outline-primary btn-sm" href="{% url 'diaries:edit' diary.id %}" role="button">
+              <i class="fas fa-wrench"></i>
+            </a>
+          </div>
+          <!--削除-->
+          <div class="col-auto">
+            <form method="post" action="{% url 'diaries:delete' diary.id %}">
+              {% csrf_token %}
+              <button class="btn btn-outline-danger btn-sm" type="submit" onclick='return confirm("日報を削除してよろしいですか？");'>
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
-			<p class="fs-6 text-secondary">内容</p>
-			<p class="fs-6">{{ diary.content }}</p>
-			<hr>
+    <!--中身-->
+    <div class="card-body">
+      <h5>
+        <p>
+          <i class="fas fa-user" style="color: #6C757D;"></i>
+          <span>{{ diary.student }}</span>
+        </p>
+        <p>
+          <i class="fas fa-user-tie" style="color: #6C757D;"></i>
+          {{ diary.teacher }}
+        </p>
+      </h5>
+      <hr>
 
-			<p class="fs-6 text-secondary">担当範囲</p>
-			<p class="fs-6">{{ diary.range }}</p>
-			<hr>
+      <p class="fs-6 text-secondary">
+        <i class="fas fa-clipboard"></i>
+        <span>内容</span>
+      </p>
+      <p class="fs-6">{{ diary.content }}</p>
+      <hr>
 
-			<p class="fs-6 text-secondary">宿題</p>
-			<p class="fs-6">{{ diary.homework }}</p>
-			<hr>
+      <p class="fs-6 text-secondary">
+        <i class="fas fa-arrow-up-wide-short"></i>
+        <span>担当範囲</span>
+      </p>
+      <p class="fs-6">{{ diary.range }}</p>
+      <hr>
 
-			<p class="fs-6 text-secondary">備考</p>
-			<p class="fs-6">{{ diary.remark }}</p>
-		</div>
-	</div>
+      <p class="fs-6 text-secondary">
+        <i class="fas fa-pen"></i>
+        <span>宿題</span>
+      </p>
+      <p class="fs-6">{{ diary.homework }}</p>
+      <hr>
+
+      <p class="fs-6 text-secondary">
+        <i class="fas fa-message"></i>
+        <span>備考</span>
+      </p>
+      <p class="fs-6">{{ diary.remark }}</p>
+    </div>
+  </div>
 </div>
 {% endblock %}

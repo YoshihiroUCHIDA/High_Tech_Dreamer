@@ -1,25 +1,38 @@
+{% if diaries_list %}
+<div class="d-flex flex-row bd-highlight mb-3 flex-wrap">
+  {% for diary in diaries_list %}
+  <div class="p-2 bd-highlight w-25">
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-calendar-days" style="color: #6C757D;"></i>
+        <span>{{ diary.date|date:"n月j日 (D)" }} - {{ diary.student.name }}</span>
+        <span class="badge bg-{{diary.subject_id.color}}"> {{ diary.subject_id }}</span>
+      </div>
 
-  {% if diaries_list %}
-  <div class="d-flex flex-row bd-highlight mb-3 flex-wrap">
-    {% for diary in diaries_list %}
-      <div class="p-2 bd-highlight w-25">
-        <div class="card">
-          <div class="card-header">
-            {{ diary.date|date:"n月j日 (D)" }} - {{ diary.student_id.name }}
-            <span class="badge bg-{{diary.subject_id.color}}"> {{ diary.subject_id }}</span>
-          </div>
-          <div class="card-body">
-            <p class="fs-6 text-secondary">内容</p>
-            <p class="fs-6">{{diary.content}}</p>
-            <p class="fs-6 text-secondary">宿題</p>
-            <p class="fs-6">{{diary.homework}}</p>
-            <a class ="btn btn-outline-primary" href="{% url 'diaries:detail' diary.id %}">詳細</a>
-          </div>
+      <div class="card-body">
+        <p class="fs-6 text-secondary">
+          <i class="fas fa-clipboard"></i>
+          <span>内容</span>
+        </p>
+
+        <p class="fs-6">{{ diary.content }}</p>
+        <p class="fs-6 text-secondary">
+          <i class="fas fa-pen"></i>
+          <span>宿題</span>
+        </p>
+        
+        <p class="fs-6">{{ diary.homework }}</p>
+        <div>
+          <a class="btn btn-outline-primary" href="{% url 'diaries:detail' diary.id %}">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>詳細</span>
+          </a>
         </div>
       </div>
-    {% endfor %}
+    </div>
   </div>
-  {% else %}
-    <p>No Diary</p>
-  {% endif %}
-
+  {% endfor %}
+</div>
+{% else %}
+<p>No Diary</p>
+{% endif %}
