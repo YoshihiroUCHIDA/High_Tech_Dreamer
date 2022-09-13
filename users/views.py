@@ -14,7 +14,7 @@ import datetime
 
 def index(request):
     users = CustomUser.objects.filter(job="student")
-    params = {'users_list': users, }
+    params = {'users_list': users,}
     return render(request, 'users/index.html', params)
 
 
@@ -27,8 +27,8 @@ def detail(request, user_id):
 
     params = {
         'user': user,
-        'diaries_list': diaries,
         'user_grade':grade,
+        'diaries_list': diaries,
     }
     return render(request, 'users/detail.html', params)
 
@@ -42,7 +42,7 @@ def ConvertToGrade(today, birthday):
         g=int(todayy)-int(birthy)
     else:#遅生まれ
         g=int(todayy)-int(birthy)-1
-    grade="不明"
+    grade=""
     if g==6:
         grade="小学1年生"
     elif g==7:
