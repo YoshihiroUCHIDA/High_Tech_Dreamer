@@ -1,30 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %}日報の作成{% endblock%}
+{% block title %}プロフィールの編集{% endblock %}
 
 {% block content %}
 <div class="container my-4 py-3 bg-light rounded-3">
-  <h1 class="display-6">日報の作成</h1>
+  <h1 class="display-6">プロフィールの編集</h1>
 
-  <form action="{% url 'diaries:create' %}" method="post">
+  <form action="{% url 'users:edit' id %}" method="post">
     {% csrf_token %}
 
     {{ form.non_field_errors }}
     {% for item in form %}
     <div class="form-group mb-3">
-      
-      <!--講師の選択フィールドの未表示-->
-      {% if item.label == "Teacher" %}
-      <div style="display: none;">
+      <div>
         <label class="mb-1">{{ item.label }}</label>
         {{ item }}
       </div>
-      <!--そのほかの入力フィールド-->
-      {% else %}
-      <label class="mb-1">{{ item.label }}</label>
-      {{ item }}
-      {% endif %}
-      
       {% if field.help_text %}
       <span class="helptext">{{ field.help_text }}</span>
       {% endif %}
@@ -33,7 +24,7 @@
     {% endfor %}
 
     <div class="text-end">
-      <button type="submit" class="btn btn-primary">作成</button>
+      <button type="submit" class="btn btn-primary">適用</button>
     </div>
   </form>
 </div>

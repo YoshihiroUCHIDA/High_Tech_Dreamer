@@ -1,0 +1,14 @@
+{% extends "base.html"%}
+{% block title %}授業一覧{% endblock %}
+
+{% block content %}
+  <div class="container bg-light rounded-3">
+    {% if lessons %}
+      {% for lesson in lessons %}
+        {{ lesson.date }}
+      {% endfor %}
+    {% else %}
+      No Data
+    {% endif %}
+  </div>
+{% endblock%}

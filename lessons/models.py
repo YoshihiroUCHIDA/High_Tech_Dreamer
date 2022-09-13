@@ -11,4 +11,4 @@ class Lesson(models.Model):
     users = models.ManyToManyField(CustomUser,null=True)
 
     def __str__(self):
-        return self.date
+        return str(self.date)
