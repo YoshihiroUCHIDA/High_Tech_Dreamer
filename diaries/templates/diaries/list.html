@@ -5,8 +5,8 @@
       <div class="p-2 bd-highlight w-25">
         <div class="card">
           <div class="card-header">
-            {{ diary.date|date:"n月j日 (D)" }} - {{ diary.student_id.name }}
-            <span class="badge bg-{{diary.subject_id.color}}"> {{ diary.subject_id }}</span>
+            {{ diary.date|date:"n月j日 (D)" }} - {{ diary.student.name }}
+            <span class="badge bg-{{diary.subject.color}}"> {{ diary.subject }}</span>
           </div>
           <div class="card-body">
             <p class="fs-6 text-secondary">内容</p>

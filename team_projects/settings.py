@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'subjects',
     'diaries',
     'jukus',
+    'lessons',
 ]
 
 MIDDLEWARE = [

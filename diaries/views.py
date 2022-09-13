@@ -37,7 +37,7 @@ def create(request):
     
     # 初期値の設定
     params = {
-        'form': DiaryForm(initial={'teacher_id': teacher}),
+        'form': DiaryForm(initial={'teacher': teacher}),
     }
     return render(request, 'diaries/create.html', params)
 
