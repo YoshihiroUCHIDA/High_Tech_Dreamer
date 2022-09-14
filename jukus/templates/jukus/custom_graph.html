@@ -199,14 +199,14 @@
 
   <div class="statistics row">
     <div class="col-3 mx-4 px-5">
-      <p class="text-secondary">総出席日数</p>
+      <p class="text-secondary">年間出席日数</p>
       <h2 class="sum">{{ contributions_django.graph.sum }}</h2>
       <p class="annotation">{{ contributions_django.graph.start_date }} &ndash; {{ contributions_django.graph.today_date }}</p>
     </div>
    <div class="col-3 border-start border-2 mx-4 px-5">
      <p class="text-secondary">月間出席日数</p>
       <h2 class="sum">{{ contributions_django.graph.sum_monthly }}</h2>
-      <p class="annotation">{{ contributions_django.graph.start_date }} &ndash; {{ contributions_django.graph.today_date }}</p>
+      <p class="annotation">{{ month_ago_date }} &ndash; {{ contributions_django.graph.today_date }}</p>
     </div>
   </div>
 </div>

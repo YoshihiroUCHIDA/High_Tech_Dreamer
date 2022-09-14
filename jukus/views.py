@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -22,7 +24,6 @@ def dashboard(request):
         i += 1
 
     dates = Diary.objects.values_list('date', flat=True)
-    print(dates)
     graph_data = generate_contributors_graph(dates)
 
     if user.job == "student":
@@ -35,7 +36,8 @@ def dashboard(request):
         'user' : user,
         'users_list' : following_list,
         'diaries_list' : diaries_list,
-        'contributions_django' : graph_data
+        'contributions_django' : graph_data,
+        'month_ago_date' : (datetime.date.today() - datetime.timedelta(30)).strftime("%Y-%m-%d")
     }
 
     return render(request, 'jukus/dashboard.html', params)
