@@ -16,14 +16,14 @@
         </div>
 
         <div class="container">
-          <h2 class="fw-bold">
+          <h3 class="fw-bold">
             {% if user.job == "student" %}
             <i class="fas fa-user" style="color: #6C757D;"></i>
             {% else %}
             <i class="fas fa-user-tie" style="color: #6C757D;"></i>
             {% endif %}
             <span>{{ user.name }}</span>
-          </h2>
+          </h3>
         </div>
 
         <div class="container">
@@ -51,8 +51,7 @@
 
         <div class="container my-3">
           <a href="{% url 'users:edit' user.id %}" class="btn btn-outline-secondary">
-            <i class="fas fa-wrench"></i>
-            <span>プロフィール編集</span>
+            <i class="fas fa-wrench"></i>プロフィール編集
           </a>
         </div>
         <hr>
@@ -65,11 +64,11 @@
 
     <div class="col-9">
       <div class="container bg-light rounded-3 py-3 shadow-lg">
-        <h2 class="fw-bold">
+        <h3 class="fw-bold">
           <i class="fas fa-bullhorn" style="color: #6C757D;"></i>
           <span>{{ user.juku }}からのお知らせ</span>
-        </h2>
-        <div class="alert alert-success" role="alert">
+        </h3>
+        <div class="alert alert-primary" role="alert">
           {{ juku.news }}
         </div>
       </div>
@@ -77,23 +76,23 @@
       <!--講師ユーザの場合のみ表示-->
       {% if user.job == "teacher" %}
       <div class="container my-4 py-3 bg-light rounded-3">
-        <h2 class="fw-bold">
-          <a class="text-decoration-none text-success" href="{% url 'users:index' %}">
-            <i class="fas fa-users"></i>
-            <span>担当生徒</span>
+        <h3 class="fw-bold">
+          <a class="text-decoration-none text-third" href="{% url 'users:index' %}">
+            <i class="fas fa-users"></i> 担当生徒 <span class="vertical-middle fs-6 badge bg-secondary">{{ user.count_following }}</span>
           </a>
-        </h2>
+        </h3>
         {% include "users/list.html" %}
+        <a class="fs-6 text-secondary" href="{% url 'users:following' user.id %}">全ての担当生徒 >></a>
       </div>
       {% endif %}
 
       <div class="container my-4 py-3 bg-light rounded-3 shadow-lg">
-        <h2 class="fw-bold">
-          <a class="text-decoration-none text-success" href="{% url 'diaries:index' %}">
-            <i class="fas fa-book-open"></i>
+        <h3 class="fw-bold">
+          <a class="text-decoration-none text-third" href="{% url 'diaries:index' %}">
+            <i class="fas fa-file"></i>
             <span>日報</span>
           </a>
-        </h2>
+        </h3>
         {% include "diaries/list.html" %}
       </div>
 
