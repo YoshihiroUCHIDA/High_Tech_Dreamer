@@ -14,4 +14,5 @@ urlpatterns = [
     path('index/',views.index, name="index"),
     path('<int:user_id>/edit/',views.edit,name="edit"),
     path('teacher_index/',views.teacher_index, name="teacher_index"),
+    path('follow_index/', views.follow_index, name="follow_index"),
 ]
