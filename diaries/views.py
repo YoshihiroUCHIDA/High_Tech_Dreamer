@@ -1,9 +1,14 @@
+import datetime
+from contributions_django.graphs import generate_contributors_graph
+
 from django.shortcuts import render
 from django.shortcuts import redirect
-from diaries.models import Diary
-from users.models import CustomUser
-from .forms import DiaryForm
 from django.views.decorators.http import require_POST
+from django.http import JsonResponse
+
+from .forms import DiaryForm
+from .models import Diary
+from users.models import CustomUser
 
 
 # --------------------------------------------------
@@ -68,6 +73,31 @@ def edit(request, diary_id):
         'form': DiaryForm(instance=obj)
     }
     return render(request, 'diaries/edit.html', params)
+
+# --------------------------------------------------
+#芝生の表示
+def heatmap(request):
+    dates = Diary.objects.values_list('date', flat=True)
+    context = generate_contributors_graph(dates, title="Contributions")
+    return render(request, "diaries/heatmap.html", context)
+
+"""
+def get(request):
+    print("diaryyyyy")
+
+    today = datetime.date.today()
+    d = today - datetime.timedelta(days=365)
+    data  = []
+    for in range(365):
+        d += datetime.timedelta(days=1) 
+        data.appen({'date': d, 'count': count})
+
+    if request.headers.get("Content-Type") == "application/json":
+        diaries = list(Diary.objects.filter(teacher=request.user).values())
+        print("diary")
+        print(diaries)
+        return JsonResponse(diaries, safe=False, status=200)
+"""
 
 # --------------------------------------------------
 # 日報の削除

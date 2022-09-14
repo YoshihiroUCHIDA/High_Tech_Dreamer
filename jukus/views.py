@@ -6,6 +6,9 @@ from users.models import CustomUser
 from users.models import Follow
 from diaries.models import Diary
 
+from contributions_django.graphs import generate_contributors_graph
+from contributions_django import dateutils
+
 @login_required
 def dashboard(request):
     user = request.user
@@ -17,6 +20,10 @@ def dashboard(request):
     while i < 4 and i < len(following):
         following_list.append(following[i].follow_target)
         i += 1
+
+    dates = Diary.objects.values_list('date', flat=True)
+    print(dates)
+    graph_data = generate_contributors_graph(dates)
 
     if user.job == "student":
         diaries_list = Diary.objects.filter(student_id=user.id).order_by("date").reverse()[0:4]
@@ -32,9 +39,11 @@ def dashboard(request):
 
     params = {
         'juku': juku,
-        'user': user,
-        'users_list': following_list,
-        'diaries_list': diaries_list,
+        'user' : user,
+        'users_list' : following_list,
+        'diaries_list' : diaries_list,
+        'contributions_django' : graph_data
         'new_diary_list': new_diary_list,
     }
+
     return render(request, 'jukus/dashboard.html', params)
