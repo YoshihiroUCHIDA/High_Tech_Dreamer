@@ -77,8 +77,10 @@
       {% if user.job == "teacher" %}
       <div class="container my-4 py-3 bg-light rounded-3">
         <h3 class="fw-bold">
-          <a class="text-decoration-none text-third" href="{% url 'users:index' %}">
-            <i class="fas fa-users"></i> 担当生徒 <span class="vertical-middle fs-6 badge bg-secondary">{{ user.count_following }}</span>
+          <a class="text-decoration-none text-third" href="{% url 'users:follow_index' %}">
+            <i class="fas fa-users"></i>
+            <span>担当生徒</span>
+            <span class="vertical-middle fs-6 badge bg-secondary">{{ user.count_following }}</span>
           </a>
         </h3>
         {% include "users/list.html" %}

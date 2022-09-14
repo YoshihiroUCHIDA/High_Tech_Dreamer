@@ -1,7 +1,8 @@
-{% extends "base.html"%}
-{% block title %}ユーザー一覧{% endblock %}
+{% extends "base.html" %}
+{% block title %}{{ title }}リスト{% endblock %}
+
 {% block content %}
-  <div class="container">
-    {% include "users/list.html" %}
-  </div>
+<div class="container">
+  {% include "users/list.html" %}
+</div>
 {% endblock%}
