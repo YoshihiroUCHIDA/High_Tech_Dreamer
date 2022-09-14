@@ -27,11 +27,20 @@
           <span class="badge bg-{{subjects.color}}">{{subjects}}</span>
           {% endfor %}
         </div>
-
       </div>
-      <a class="btn btn-outline-primary" href="{% url 'users:follow' user.id %}">フォロー</a>
-      <hr>
-      直近の日報だしたい
+
+      <!--<p>
+        <a class="btn btn-outline-primary" href="{% url 'users:follow' user.id %}">フォロー</a>
+      </p>-->
+
+      <h6 class="fw-bold">
+        <i class="fas fa-book-open" style="color: #6C757D;"></i>
+        <span>最新の日報</span>
+      </h6>
+      <div class="container bg-light rounded-3 pt-3 pb-1">
+        {% include "diaries/new_diary.html" %}
+      </div>
+
       <hr>
       簡単な成績出したい
     </div>
