@@ -6,7 +6,7 @@
       <div class="card-header">
         <i class="fas fa-calendar-days" style="color: #6C757D;"></i>
         <span>{{ diary.date|date:"n月j日 (D)" }} - {{ diary.student.name }}</span>
-        <span class="badge bg-{{diary.subject_id.color}}"> {{ diary.subject_id }}</span>
+        <span class="badge bg-{{diary.subject.color}}"> {{ diary.subject }}</span>
       </div>
 
       <div class="card-body">

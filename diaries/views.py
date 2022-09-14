@@ -30,6 +30,16 @@ def detail(request, diary_id):
     return render(request, 'diaries/detail.html', params)
 
 # --------------------------------------------------
+# 最新の日報の表示
+def new_detail(request, user_id):
+    user = CustomUser.objects.get(id=user_id)
+    diaries = Diary.objects.filter(student=user).order_by("date").reverse()
+    params = {
+        'diary': diaries.first(),
+    }
+    return render(request, 'diaries/detail.html', params)
+
+# --------------------------------------------------
 # 日報の作成
 def create(request):
     # Submit の処理
@@ -96,3 +106,4 @@ def delete(request, diary_id):
     diary = Diary.objects.get(id=diary_id)
     diary.delete()
     return redirect(to='/diaries')
+

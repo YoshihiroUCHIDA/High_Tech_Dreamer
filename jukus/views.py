@@ -31,13 +31,21 @@ def dashboard(request):
     else:
         diaries_list = Diary.objects.all().order_by("date").reverse()[0:4]
 
-    params = { 
+    # フォロー生徒の最新の日報の取得
+    following_id_list = following.values_list('follow_target_id', flat=True)
+    new_diary_list = []   
+    for id in following_id_list:
+        data = Diary.objects.filter(student_id=id).order_by('date').reverse()
+        new_diary_list.append(data.first())
+
+    params = {
         'juku': juku,
         'user' : user,
         'users_list' : following_list,
         'diaries_list' : diaries_list,
         'contributions_django' : graph_data,
-        'month_ago_date' : (datetime.date.today() - datetime.timedelta(30)).strftime("%Y-%m-%d")
+        'month_ago_date' : (datetime.date.today() - datetime.timedelta(30)).strftime("%Y-%m-%d"),
+        'new_diary_list': new_diary_list,
     }
 
     return render(request, 'jukus/dashboard.html', params)
