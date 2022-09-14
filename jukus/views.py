@@ -33,11 +33,20 @@ def dashboard(request):
 
     # フォロー生徒の最新の日報の取得
     following_id_list = following.values_list('follow_target_id', flat=True)
+    temp_list = []
     new_diary_list = []   
     for id in following_id_list:
         data = Diary.objects.filter(student_id=id).order_by('date').reverse()
         new_diary_list.append(data.first())
-
+        temp_list.append(data.values_list('student_id').first())
+        
+    new_diary_id_list = []   
+    for i in temp_list:
+        if (type(i) == type(())):
+            new_diary_id_list.append(i[0])
+        else: 
+            new_diary_id_list.append(i)
+        
     params = {
         'juku': juku,
         'user' : user,
@@ -46,6 +55,6 @@ def dashboard(request):
         'contributions_django' : graph_data,
         'month_ago_date' : (datetime.date.today() - datetime.timedelta(30)).strftime("%Y-%m-%d"),
         'new_diary_list': new_diary_list,
+        'new_diary_id_list': new_diary_id_list,
     }
-
     return render(request, 'jukus/dashboard.html', params)
