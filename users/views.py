@@ -61,7 +61,6 @@ def edit(request,user_id):
     }
     return render(request,'users/edit.html',params)
 
-
 class MyLoginView(LoginView):
     form_class = forms.LoginForm
     template_name = "users/login.html"
