@@ -1,9 +1,13 @@
+import datetime
+
 from django.shortcuts import render
 from django.shortcuts import redirect
-from diaries.models import Diary
-from users.models import CustomUser
-from .forms import DiaryForm
 from django.views.decorators.http import require_POST
+from django.http import JsonResponse
+
+from .forms import DiaryForm
+from .models import Diary
+from users.models import CustomUser
 
 
 # --------------------------------------------------
@@ -58,6 +62,20 @@ def edit(request, diary_id):
         'form': DiaryForm(instance=obj)
     }
     return render(request, 'diaries/edit.html', params)
+
+# --------------------------------------------------
+#芝生の表示
+def get(request):
+    print("diaryyyyy")
+
+    today = datetime.date.today()
+    year_ago = today - datetime.timedelta(days=365)
+
+    if request.headers.get("Content-Type") == "application/json":
+        diaries = list(Diary.objects.filter(teacher=request.user).values())
+        print("diary")
+        print(diaries)
+        return JsonResponse(diaries, safe=False, status=200)
 
 # --------------------------------------------------
 # 日報の削除
