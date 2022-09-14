@@ -50,6 +50,11 @@ INSTALLED_APPS = [
 ]
 
 CONTRIBUTIONS_DJANGO = {
+    'GRADIENT0': "#eee", # this is empty gray, likely don't want to change this
+    'GRADIENT1': "#90E0EF",
+    'GRADIENT2': "#00B4D8",
+    'GRADIENT3': "#0077B6",
+    'GRADIENT4': "#03045E",
     'INCLUDE_BOOTSTRAP': False,
     'INCLUDE_FONTAWESOME': False,
 }
