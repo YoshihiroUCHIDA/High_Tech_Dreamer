@@ -84,14 +84,14 @@
           </a>
         </h3>
         {% include "users/list.html" %}
-        <a class="fs-6 text-secondary" href="{% url 'users:following' user.id %}">全ての担当生徒 >></a>
+        <!--<a class="fs-6 text-secondary" href="{% url 'users:following' user.id %}">全ての担当生徒 >></a>-->
       </div>
       {% endif %}
 
       <div class="container my-4 py-3 bg-light rounded-3 shadow-lg">
         <h3 class="fw-bold">
           <a class="text-decoration-none text-third" href="{% url 'diaries:index' %}">
-            <i class="fas fa-file"></i>
+            <i class="fas fa-book-open"></i>
             <span>日報</span>
           </a>
         </h3>

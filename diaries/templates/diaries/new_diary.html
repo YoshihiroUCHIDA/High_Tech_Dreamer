@@ -1,0 +1,24 @@
+{% if new_diary_list %}
+<div>
+    {% for diary in new_diary_list %}
+    {% if diary.student_id == user.id %}
+    <a class="text-decoration-none text-dark" href="{% url 'diaries:new_detail' user.id %}">
+        <h6>
+            <i class="fas fa-calendar-days" style="color: #6C757D;"></i>
+            <span>{{ diary.date|date:"n月j日 (D)" }}</span>
+            <span class="badge bg-{{diary.subject.color}}"> {{ diary.subject }}</span>
+        </h6>
+
+
+        <p class="fs-6 text-secondary">
+            <i class="fas fa-clipboard"></i>
+            <span>内容</span>
+        </p>
+        <p class="fs-6">{{ diary.content }}</p>
+    </a>
+    {% endif %}
+    {% endfor %}
+</div>
+{% else %}
+<p>最新の日報はありません</p>
+{% endif %}
