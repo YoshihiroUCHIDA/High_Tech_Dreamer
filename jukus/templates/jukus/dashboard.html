@@ -1,5 +1,4 @@
 {% extends "base.html"%}
-{% load static %}
 
 {% block title %}ダッシュボード{% endblock %}
 
@@ -79,13 +78,10 @@
       <div class="container bg-light rounded-3 my-4 py-3 shadow-lg">
         <h3 class="fw-bold">
           <a class="text-decoration-none text-third" href="{% url 'users:index' %}">
-            <i class="fas fa-users"></i>芝生
+            <i class="fa-solid fa-calendar-days"></i> 出席グラフ
           </a>
         </h3>
-        <div id="heatmap">
-          <calendar-heatmap :end-date="Date()" :values="[{date: '2022-9-12', count: 5},{date: '2022-9-13', count: 2},]"></calendar-heatmap>
-        </div>
-        <calendar-heatmap :end-date="Date()" :values="[{date: '2022-9-12', count: 5},{date: '2022-9-13', count: 2},]"></calendar-heatmap>
+        {% include "jukus/custom_graph.html" %}
       </div>
 
       <!--講師ユーザの場合のみ表示-->
@@ -123,14 +119,5 @@
     </div>
   </div>
 </div>
-
-<script>
-  const HEATMAP_URL = '{% url "diaries:heatmap" %}';
-</script>
-<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-<link rel="stylesheet" href="vue-calendar-heatmap/dist/vue-calendar-heatmap.css"/>
-<script src="vue.js"></script>
-<script src="vue-calendar-heatmap/dist/vue-calendar-heatmap.browser.js"></script>
-<script src="{% static 'heatmap.js' %}"></script>
 
 {% endblock %}

@@ -1,4 +1,5 @@
 import datetime
+from contributions_django.graphs import generate_contributors_graph
 
 from django.shortcuts import render
 from django.shortcuts import redirect
@@ -65,17 +66,28 @@ def edit(request, diary_id):
 
 # --------------------------------------------------
 #芝生の表示
+def heatmap(request):
+    dates = Diary.objects.values_list('date', flat=True)
+    context = generate_contributors_graph(dates, title="Contributions")
+    return render(request, "diaries/heatmap.html", context)
+
+"""
 def get(request):
     print("diaryyyyy")
 
     today = datetime.date.today()
-    year_ago = today - datetime.timedelta(days=365)
+    d = today - datetime.timedelta(days=365)
+    data  = []
+    for in range(365):
+        d += datetime.timedelta(days=1) 
+        data.appen({'date': d, 'count': count})
 
     if request.headers.get("Content-Type") == "application/json":
         diaries = list(Diary.objects.filter(teacher=request.user).values())
         print("diary")
         print(diaries)
         return JsonResponse(diaries, safe=False, status=200)
+"""
 
 # --------------------------------------------------
 # 日報の削除

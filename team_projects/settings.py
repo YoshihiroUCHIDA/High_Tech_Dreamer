@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_bootstrap5',
     'django_bootstrap_icons',
+    'contributions_django',
     'users',
     'records',
     'subjects',
@@ -47,6 +48,11 @@ INSTALLED_APPS = [
     'jukus',
     'lessons',
 ]
+
+CONTRIBUTIONS_DJANGO = {
+    'INCLUDE_BOOTSTRAP': False,
+    'INCLUDE_FONTAWESOME': False,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

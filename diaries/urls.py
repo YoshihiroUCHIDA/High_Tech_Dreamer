@@ -9,5 +9,5 @@ urlpatterns = [
     path('create', views.create, name='create'),
     path('edit/<int:diary_id>', views.edit, name='edit'),
     path('delete/<int:diary_id>', views.delete, name='delete'),
-    path('heatmap/', views.get, name='heatmap'),
+    path('heatmap/', views.heatmap, name='heatmap'),
 ]
