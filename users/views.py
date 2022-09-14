@@ -35,11 +35,8 @@ def detail(request, user_id):
     }
 
     return render(request, 'users/detail.html', params)
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 93d3478ca40f61b1137b5d4b9497ae0aba2016b1
 def follow(request, user_id):
     following = CustomUser.objects.get(pk=user_id)
     Follow.objects.get_or_create(owner=request.user, follow_target=following)
