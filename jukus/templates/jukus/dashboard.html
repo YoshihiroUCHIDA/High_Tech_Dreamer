@@ -112,7 +112,7 @@
       {% if user.job == "student" %}
       <div class="container bg-light rounded-3 my-4 py-3 shadow-lg">
         <h3 class="fw-bold">
-          <a class="text-decoration-none text-third" href="{% url 'users:index' %}">
+          <a class="text-decoration-none text-third" href="{% url 'users:records_detail' user.id %}">
             <i class="fa-solid fa-calendar-days"></i> 成績
           </a>
         </h3>
