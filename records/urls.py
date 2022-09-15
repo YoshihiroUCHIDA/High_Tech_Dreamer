@@ -5,5 +5,6 @@ app_name = 'records'
 
 urlpatterns = [
     path('',views.index, name='index'),
-    path('<int:record_id>/',views.detail, name='detail')
+    path('<int:record_id>/',views.detail, name='detail'),
+    path('chart/',views.chart, name='chart'),
 ]

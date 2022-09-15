@@ -1,4 +1,5 @@
 {% extends "base.html"%}
+{% load static %}
 
 {% block title %}ダッシュボード{% endblock %}
 
@@ -47,7 +48,7 @@
 
         <div class="container my-3">
           <i class="fas fa-school" style="color: #6C757D;"></i>
-          <span>{{ user.school }}</span>
+          <span>{{ user.school }} {{ user.grade }}</span>
         </div>
 
         <div class="container my-3">
@@ -65,6 +66,7 @@
 
     <div class="col-9">
 
+      <!--お知らせ-->
       <div class="container bg-light rounded-3 py-3 shadow-lg">
         <h3 class="fw-bold">
           <i class="fas fa-bullhorn" style="color: #6C757D;"></i>
@@ -75,16 +77,7 @@
         </div>
       </div>
 
-      <div class="container bg-light rounded-3 my-4 py-3 shadow-lg">
-        <h3 class="fw-bold">
-          <a class="text-decoration-none text-third" href="{% url 'users:index' %}">
-            <i class="fa-solid fa-calendar-days"></i> 出席日数
-          </a>
-        </h3>
-        {% include "jukus/custom_graph.html" %}
-      </div>
-
-      <!--講師ユーザの場合のみ表示-->
+      <!--担当生徒(講師ユーザの場合のみ表示)-->
       {% if user.job == "teacher" %}
       <div class="container my-4 py-3 bg-light rounded-3">
         <h3 class="fw-bold">
@@ -99,6 +92,45 @@
       </div>
       {% endif %}
 
+      <!--出席or勤務日数-->
+      <div class="container bg-light rounded-3 my-4 py-3 shadow-lg">
+        <h3 class="fw-bold">
+          <a class="text-decoration-none text-third" href="{% url 'users:index' %}">
+            <i class="fa-solid fa-calendar-days"></i>
+            {% if user.job == "student" %}
+              出席日数
+            {% else %}
+              勤務日数
+            {% endif %}
+          </a>
+        </h3>
+        {% include "jukus/custom_graph.html" %}
+      </div>
+      
+
+      <!--成績(生徒のみ表示)-->
+      {% if user.job == "student" %}
+      <div class="container bg-light rounded-3 my-4 py-3 shadow-lg">
+        <h3 class="fw-bold">
+          <a class="text-decoration-none text-third" href="{% url 'users:index' %}">
+            <i class="fa-solid fa-calendar-days"></i> 成績
+          </a>
+        </h3>
+        <div class="row">
+          <div class="col-6">
+            <h4 class="fw-bold text-secondary" style="text-align:center;">定期テスト</h4>
+            <canvas class="records-chart" height="100vh" data-url="{% url 'records:chart' %}" id="定期" ></canvas>
+          </div>
+          <div class="col-6">
+            <h4 class="fw-bold text-secondary" style="text-align:center;">模試</h4>
+            <canvas class="records-chart" height="100vh" data-url="{% url 'records:chart' %}" id="模試"></canvas>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+
+      <!--最近の日報一覧-->
       <div class="container my-4 py-3 bg-light rounded-3 shadow-lg">
         <h3 class="fw-bold">
           <a class="text-decoration-none text-third" href="{% url 'diaries:index' %}">
@@ -109,14 +141,13 @@
         {% include "diaries/list.html" %}
       </div>
 
-      <!--生徒の場合は出席ボタン-->
-      {% if user.job == "student" %}
-      {% include "lessons/create_btn.html" %}
-      <!--講師の場合は日報作成ボタン-->
-      {% else %}
-      {% include "diaries/create_btn.html" %}
+      <!--生徒の場合は日報作成ボタン非表示-->
+      {% if not user.job == "student" %}
+        {% include "diaries/create_btn.html" %}
       {% endif %}
     </div>
   </div>
 </div>
+<script src="{% static 'chart_ajax.js' %}"></script>
+
 {% endblock %}
