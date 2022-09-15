@@ -28,9 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,7 +44,7 @@ INSTALLED_APPS = [
     'subjects',
     'diaries',
     'jukus',
-    'lessons',
+    'lessons', 
 ]
 
 CONTRIBUTIONS_DJANGO = {
@@ -153,10 +151,9 @@ LOGIN_URL = 'users:login' # ログインしていないときのリダイレク�
 LOGIN_REDIRECT_URL = 'jukus:dashboard' # ログイン後のリダイレクト先
 LOGOUT_REDIRECT_URL = 'users:login' # ログアウト後のリダイレクト先
 
-#画像アップロード機能↓
+# 画像アップロード機能
 MEDIA_URL = '/media/'
 if DEBUG:
-    MEDIA_ROOT = BASE_DIR / 'media' #ローカル環境
+    MEDIA_ROOT = BASE_DIR / 'media' # ローカル環境
 else:
-    MEDIA_ROOT = f'/var/www/{BASE_DIR.name}/media'  #本番環境
-
+    MEDIA_ROOT = f'/var/www/{BASE_DIR.name}/media' # 本番環境

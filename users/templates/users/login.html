@@ -1,26 +1,130 @@
-{% extends "base.html"%}
-{% block title %}ログイン画面{% endblock %}
+<!doctype html>
+{% load django_bootstrap5 %}
+<html lang="ja">
 
-{% block content %}
-<div class="container mx-5" style="margin-top:10vh">
-  <h1 class="fw-bold text-dark text-center">
-    ログインする
-  </h1>
-</div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <title>ログイン画面 | Proglesson</title>
+  <link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <style>
+    .bg-gradient {
+      background-color: #3ff471;
+      background-image: linear-gradient(132deg, #3ff471 0%, #16A085 100%);
+    }
 
-<div class="fw-bold card mx-5 my-3">
-  <form action="" method="POST">
-    {% csrf_token %}
-    {% for item in form %}
-      <div class="form-group mx-3 ">
-        <label for="{{item.id_for_label}}" class="mt-4">{{item.label}}</label>
-        <input type="{{item.field.widget.input_type}}" class="form-control mb-2 my-2" name="{{item.name}}" id="{{item.id_for_label}}" aria-describedby="passwordHelpInline">
+    .bg-first {
+      background-color: #f6f6f6;
+    }
+
+    .bg-second {
+      background-color: #d6e4f0;
+    }
+
+    .bg-third {
+      background-color: #1e56a0
+    }
+
+    .bg-fourth {
+      background-color: #163172;
+    }
+
+    .text-first {
+      color: #f6f6f6;
+    }
+
+    .text-second {
+      color: #d6e4f0;
+    }
+
+    .text-third {
+      color: #1e56a0
+    }
+
+    .text-fourth {
+      color: #163172;
+    }
+
+    .full {
+      min-height: 100vh;
+    }
+
+    .logo {
+      color: white !important;
+      height: 3em !important;
+    }
+
+    .vertical-middle {
+      background: yellow;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .form-signin {
+      width: 100%;
+      max-width: 330px;
+      padding: 15px;
+      margin: auto;
+    }
+
+    .form-signin .form-floating:focus-within {
+      z-index: 2;
+    }
+
+    .form-signin input[type="text"] {
+      margin-bottom: -1px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="m-0 py-2 bg-second full">
+    <div class="container bg-light rounded-3 mt-5 py-4 shadow-lg">
+      <div class="text-center mt-3">
+        <img src="/media/Proglesson_blue.svg" class="logo px-3">
+        <!--
+        <div class="bg-third rounded-3" style="display:inline-block">
+          <img src="/media/Proglesson.svg" class="logo px-3 my-3">
+        </div>-->
       </div>
-     {% endfor %}
-     <div class="text-end mx-5">
-      <button type="submit" class="submit btn btn-primary my-3">ログイン</button>
-     </div>
-  </form>
-</div>
+      <h1 class="fw-bold text-dark text-center pt-3">ログイン</h1>
 
-{% endblock %}
+      <!--入力エラーメッセージ表示-->
+      <main class="form-signin">
+        {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">{{ error }}</div>
+        {% endfor %}
+        {% endif %}
+
+        <!--入力部分-->
+        <form method="POST">
+          {% csrf_token %}
+          {% for item in form %}
+          <div class="form-floating">
+            <input type="{{ item.field.widget.input_type }}" class="form-control" name="{{ item.name }}"
+              id="{{ item.id_for_label }}" placeholder="xxxxx">
+            <label for="{{ item.id_for_label }}">
+              <i class="fas fa-{% cycle 'envelope' 'key' %}"></i>
+              <span>{{ item.label }}</span>
+            </label>
+          </div>
+          {% endfor %}
+
+          <button type="submit" class="btn btn-primary btn-lg w-100 mt-4">ログイン</button>
+        </form>
+      </main>
+    </div>
+  </div>
+</body>
