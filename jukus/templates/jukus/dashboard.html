@@ -1,4 +1,5 @@
 {% extends "base.html"%}
+{% load static %}
 
 {% block title %}ダッシュボード{% endblock %}
 
@@ -47,7 +48,7 @@
 
         <div class="container my-3">
           <i class="fas fa-school" style="color: #6C757D;"></i>
-          <span>{{ user.school }}</span>
+          <span>{{ user.school }} {{ user.grade }}</span>
         </div>
 
         <div class="container my-3">
@@ -106,6 +107,7 @@
         {% include "jukus/custom_graph.html" %}
       </div>
       
+
       <!--成績(生徒のみ表示)-->
       {% if user.job == "student" %}
       <div class="container bg-light rounded-3 my-4 py-3 shadow-lg">
@@ -114,6 +116,16 @@
             <i class="fa-solid fa-calendar-days"></i> 成績
           </a>
         </h3>
+        <div class="row">
+          <div class="col-6">
+            <h4 class="fw-bold text-secondary" style="text-align:center;">定期テスト</h4>
+            <canvas class="records-chart" height="100vh" data-url="{% url 'records:chart' %}" id="定期" ></canvas>
+          </div>
+          <div class="col-6">
+            <h4 class="fw-bold text-secondary" style="text-align:center;">模試</h4>
+            <canvas class="records-chart" height="100vh" data-url="{% url 'records:chart' %}" id="模試"></canvas>
+          </div>
+        </div>
       </div>
       {% endif %}
 
@@ -129,14 +141,13 @@
         {% include "diaries/list.html" %}
       </div>
 
-      <!--生徒の場合は出席ボタン-->
-      {% if user.job == "student" %}
-      {% include "lessons/create_btn.html" %}
-      <!--講師の場合は日報作成ボタン-->
-      {% else %}
-      {% include "diaries/create_btn.html" %}
+      <!--生徒の場合は日報作成ボタン非表示-->
+      {% if not user.job == "student" %}
+        {% include "diaries/create_btn.html" %}
       {% endif %}
     </div>
   </div>
 </div>
+<script src="{% static 'chart_ajax.js' %}"></script>
+
 {% endblock %}

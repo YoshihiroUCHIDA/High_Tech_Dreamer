@@ -24,7 +24,7 @@ function makeChart(records, id){
   console.log(score_japanese)
 
   const ctx = document.getElementById(id).getContext('2d');
-  const myChart = new Chart(ctx, {
+  new Chart(ctx, {
     type: 'line',
     data: {        
       labels: labels,
@@ -66,7 +66,6 @@ function makeChart(records, id){
           beginAtZero: true,
           suggestedMin: 0,
           suggestedMax: 100,
-
         }
       }
     }
